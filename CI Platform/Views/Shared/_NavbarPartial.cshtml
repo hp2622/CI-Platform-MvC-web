@@ -1,0 +1,514 @@
+﻿@{
+    Layout = "";
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/navbar.css">
+    <link rel="stylesheet" href="~/css/landingpage.css">
+</head>
+
+<body>
+
+    <div>
+        <nav class="navbar headernav navbar-expand-lg fixed-top" style="background-color: #ffffff;">
+            <div class="container">
+                <div class="d-flex col-md-6 d-flex justify-content-center justify-content-md-start pt-3 mb-3 mb-md-0">
+
+                    <p>Stories</p>
+                    <div class="dropdown ms-5">
+                        <a class="text-reset me-3 dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                           data-mdb-toggle="dropdown" aria-expanded="false">
+                            Policy
+                        </a>
+                        <ul class="dropdown-menu ddpolicy dropdown-menu-start" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="#">Read Policy</a></li>
+                            <li>
+                                <a class="dropdown-item" href="#">Terms & Conditions</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">User's Policy</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <button class="navbar-toggler pb-3" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                    <span><img src="./images/menu-bar.svg" alt="logo"></span>
+                </button>
+
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
+                     aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header">
+                        <form role="search" class="d-flex">
+                            <!-- <img src="../HTML/images/search.png" height="22px" width="21px"class="mt-2">? -->
+                            <i class="bi bi-search mt-2 "></i>
+                            <input class="form-control rounded ms-2 searchbox" type="search" placeholder="Search mission....." aria-label="Search "
+                                   value="@ViewBag.Searchinput" name="searchinput" id="search-bar2322">
+
+                        </form>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body justify-content-end">
+
+                        <ul class="navbar-nav justify-content-end dashboard-nav-sidebar-toggle">
+
+
+                            <li class="nav-item d-flex align-items-center">
+                                <div class="sidebar-detail d-flex">
+                                    <div class="dropdown dropend pe-3 ps-2 dropdownborder">
+                                        <a class="text-reset me-5 singledropdown dropdown-toggle" href="#"
+                                           id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown"
+                                           aria-expanded="false">
+                                            Country
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-start" aria-labelledby="navbarDropdownMenuLink">
+                                            <li class="dropdown-checkbox">
+                                                <input type="checkbox" value="India" name="India" id=""
+                                                       class="ms-3 checkbox ">India
+                                            </li>
+                                            <li class="dropdown-checkbox">
+                                                <input type="checkbox" value="USA" name="USA" id=""
+                                                       class="ms-3 checkbox ">USA
+                                            </li>
+                                            <li class="dropdown-checkbox">
+                                                <input type="checkbox" value="Canada" name="Canada" id=""
+                                                       class="ms-3 checkbox ">Canada
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="nav-item d-flex align-items-center">
+                                <div class="sidebar-detail d-flex">
+                                    <div class="dropdown dropend ms-1 pe-5 ps-2 dropdownborderright">
+                                        <a class="text-reset me-5 singledropdown dropdown-toggle" href="#"
+                                           id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown"
+                                           aria-expanded="false">
+                                            City
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-start" aria-labelledby="navbarDropdownMenuLink">
+                                            <li class="dropdown-checkbox">
+                                                <input type="checkbox" value="Surat" name="Surat" id=""
+                                                       class="ms-3 checkbox ">Surat
+                                            </li>
+                                            <li class="dropdown-checkbox">
+                                                <input type="checkbox" value="New York" name="New York" id=""
+                                                       class="ms-3 checkbox ">New York
+                                            </li>
+                                            <li class="dropdown-checkbox">
+                                                <input type="checkbox" value="Toronto" name="Toronto" id=""
+                                                       class="ms-3 checkbox ">Toronto
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="nav-item d-flex align-items-center">
+                                <div class="sidebar-detail d-flex">
+                                    <div class="dropdown dropend ms-1 pe-5 ps-2 dropdownborderright">
+                                        <a class="text-reset singledropdown me-4 dropdown-toggle" href="#"
+                                           id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown"
+                                           aria-expanded="false">
+                                            Theme
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-start" aria-labelledby="navbarDropdownMenuLink">
+                                            <li class="dropdown-checkbox">
+                                                <input type="checkbox" value="Environment" name="Environment" id=""
+                                                       class="ms-3 checkbox ">Environment
+                                            </li>
+                                            <li class="dropdown-checkbox">
+                                                <input type="checkbox" value="Children" name="Children" id=""
+                                                       class="ms-3 checkbox ">Children
+                                            </li>
+                                            <li class="dropdown-checkbox">
+                                                <input type="checkbox" value="Women" name="Women" id=""
+                                                       class="ms-3 checkbox ">Women
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="nav-item d-flex align-items-center">
+                                <div class="sidebar-detail d-flex">
+                                    <div class="dropdown dropend ms-1 pe-5 ps-2 dropdownborderright">
+                                        <a class="text-reset singledropdown me-4 dropdown-toggle" href="#"
+                                           id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown"
+                                           aria-expanded="false">
+                                            skills
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-start" aria-labelledby="navbarDropdownMenuLink">
+                                            <li class="dropdown-checkbox">
+                                                <input type="checkbox" value="Nutrition" name="Nutrition" id=""
+                                                       class="ms-3 checkbox ">Nutrition
+                                            </li>
+                                            <li class="dropdown-checkbox">
+                                                <input type="checkbox" value="Advocacy" name="Advocacy" id=""
+                                                       class="ms-3 checkbox ">Advocacy
+                                            </li>
+                                            <li class="dropdown-checkbox">
+                                                <input type="checkbox" value="communication" name="communication" id=""
+                                                       class="ms-3 checkbox ">communication
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+
+                        </ul>
+                        @{
+                             var firstname = Context.Session.GetString("firstname");
+                        }
+                        @if(firstname != null)
+                        {
+                            <ul class="navbar-nav col-md-6 justify-content-end">
+                            <li class="nav-item d-flex align-items-center">
+
+                                <div class="dropdown">
+                                    <a class="text-reset dropdown-toggle d-flex align-items-center" href="#"
+                                       id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown"
+                                       aria-expanded="false">
+                                        <img src="~/Images/profile.png" class="rounded-circle me-3" height="22" alt=""
+                                             loading="lazy" />
+
+                                        
+                                        @firstname
+
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-start"
+                                        aria-labelledby="navbarDropdownMenuLink">
+                                        <li><a class="dropdown-item" href="#">My profile</a></li>
+                                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                                        <li><a class="dropdown-item" asp-controller="Login" asp-action="Login">Logout</a></li>
+                                    </ul>
+                                     </li>
+                        </ul>
+                        }
+                        
+                                    else
+                                    {
+                                    <div class="text-center text-lg-start d-flex mt-3">
+                                        <form asp-action="Login" asp-controller="Login" method="post">
+
+                                        <button type="submit" class="btn btn-primary btn-lg"
+                                                style="padding-left: 2.5rem; padding-right: 2.5rem;">
+                                            Login
+                                        </button>
+                                        </form>
+                                        <form asp-action="Register" asp-controller="User" method="get">
+                                        <button type="submit" class="btn btn-success btn-lg ms-3"
+                                                style="padding-left: 2.5rem; padding-right: 2.5rem;">
+                                            Register
+                                        </button>
+                                        </form>
+                                    </div>
+                                    }
+                                </div>
+
+
+                           
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+
+        <div class="navbar menubar navbar-expand-lg navbar-light bg-white"
+             style="padding-top: 51px; padding-bottom: 0px" id="menu">
+            <div class="container">
+                <div class="col-md-4">
+                    @* <form asp-action="Test" class="input-group rounded">
+                        <i class="fas fa-search mt-2"></i>
+
+                        <input type="search" asp-for="searchTerm" class="form-control rounded ms-2" placeholder="Search Mission . . ."
+                        aria-label="Search" aria-describedby="search-addon" style="border: 0px" />
+                        </form>*@
+                    <form role="search" class="d-flex mt-2">
+                        <!-- <img src="../HTML/images/search.png" height="22px" width="21px"class="mt-2">? -->
+                        <i class="fas fa-search mt-2"></i>
+                        @*<input class="form-control rounded ms-2 searchbox" type="search" placeholder="Search mission....." aria-label="Search "
+                            value="@ViewBag.Searchinput" name="searchinput" id="search-bar" style="border: 0px">*@
+                        <input type="search"
+                               class="form-control rounded ms-2 searchbox"
+                               id="search"
+                               value=@ViewBag.searchQuery
+                               placeholder="Search Mission..."
+                               aria-label="Search"
+                               style="width: 80vw" />
+                    </form>
+                </div>
+                <div class="dropdown-section col-md-8 d-flex justify-content-end" style="height: 50px">
+                    <div class="dropdown ms-5 pe-3 ps-2 dropdownborder">
+                        <a class="text-reset me-5 singledropdown dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                           role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                            Country
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-start dropdownlist" id="countryList" aria-labelledby="navbarDropdownMenuLink">
+
+                            @* @foreach (var items in ViewBag.Country)
+                                {
+
+                                <li class="dropdown-checkbox">
+                                <form method="get">
+
+                                <input asp-route-kvl="hello" type="checkbox" value="@items.Name" name="country" id="country-filter"
+                                class="ms-3 checkbox">@items.Name
+                                </form>
+
+                                </li>
+
+
+                                }*@
+                            @foreach (var country in ViewBag.countries)
+                            {
+                                <li>
+                                    <a class="dropdown-item dd-color" href="#">
+                                        <div class="form-check">
+                                            <input class="form-check-input checkbox" name="countries" type="checkbox" value="@country.Name"
+                                               id="@country.CountryId" />
+                                            <label class="form-check-label" for=@country.Name>@country.Name</label>
+                                        </div>
+                                    </a>
+                                </li>
+                            }
+
+
+                        </ul>
+                    </div>
+
+
+
+                    <div class="dropdown ms-1 pe-5 ps-2 dropdownborderright">
+                        <a class="text-reset me-5 singledropdown dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                           role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                            City
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-start dropdownlist" id="cityList" aria-labelledby="navbarDropdownMenuLink">
+                            @*@foreach (var items in ViewBag.Cities)
+                                {
+                                <li class="dropdown-checkbox">
+                                <input type="checkbox" value="@items.Name" name="city" id="city-filter"
+                                class="ms-3 checkbox ">@items.Name
+                                </li>
+
+                                }*@
+                            @if (ViewBag.cities == null)
+                            {
+                                <p>Please select a Country</p>
+                            }
+                            @if (ViewBag.cities != null)
+                            {
+                                @foreach (var city in ViewBag.cities)
+                                {
+                                    <li>
+                                        <a class="dropdown-item dd-color" href="#">
+                                            <div class="form-check">
+                                                <input class="form-check-input checkbox" name="cities" type="checkbox" value="@city.Name" id=@city.CityId />
+                                                <label class="form-check-label" for=@city.CityId>@city.Name</label>
+                                            </div>
+                                        </a>
+                                    </li>
+                                }
+
+                            }
+                        </ul>
+                    </div>
+                    <div class="dropdown ms-1 pe-5 ps-2 dropdownborderright">
+                        <a class="text-reset singledropdown me-4 dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                           role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                            Theme
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-start dropdownlist" id="themeList" aria-labelledby="navbarDropdownMenuLink">
+                            @* @foreach (var items in ViewBag.Themes)
+                                {
+                                <li class="dropdown-checkbox">
+                                <input type="checkbox" value="@items.Title" name="@items.Title" id="theme-filter"
+                                class="ms-3 checkbox ">@items.Title
+                                </li>
+
+                                }*@
+                            @foreach (var theme in ViewBag.Themes)
+                            {
+                                <li>
+                                    <a class="dropdown-item dd-color" href="#">
+                                        <div class="form-check">
+                                            <input class="form-check-input checkbox" name="themes" type="checkbox" value="@theme.Title" id=@theme.MissionThemeId />
+                                            <label class="form-check-label" for=@theme.MissionThemeId>@theme.Title</label>
+                                        </div>
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="dropdown ms-1 pe-5 ps-2 dropdownborderright">
+                        <a class="text-reset singledropdown me-4 dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                           role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                            skills
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-start" aria-labelledby="navbarDropdownMenuLink">
+                            <li class="dropdown-checkbox">
+                                <input type="checkbox" value="Nutrition" name="Nutrition" id=""
+                                       class="ms-3 checkbox ">Nutrition
+                            </li>
+                            <li class="dropdown-checkbox">
+                                <input type="checkbox" value="Advocacy" name="Advocacy" id=""
+                                       class="ms-3 checkbox ">Advocacy
+                            </li>
+                            <li class="dropdown-checkbox">
+                                <input type="checkbox" value="communication" name="communication" id=""
+                                       class="ms-3 checkbox ">communication
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        @*<div class="valuelist d-flex align-items-center flex-wrap justify-content-center mt-1 mb-1">
+
+            @if (@ViewBag.SearchCountry != null)
+            {
+            <div class="filter-list px-2 ms-2" id="closeCountryfilter">
+            @ViewBag.SearchCountry
+            <button class="btn-close" type="button" aria-label="close" onclick="closeCountryfilter()"></button>
+            </div>
+            }
+            @if (@ViewBag.SearchCity != null)
+            {
+            <div class="filter-list px-2 ms-2 " id="closeCityfilter">
+            @ViewBag.SearchCity
+            <button class="btn-close" type="button" aria-label="close" onclick="closeCityfilter()"></button>
+            </div>
+            }
+            @if (@ViewBag.Theme != null)
+            {
+            //@foreach (var items in @ViewBag.theme)
+            //{
+            <div class="filter-list px-2 ms-2" id="closethemefilter">
+            @items.Title
+            @ViewBag.Theme
+            <button class="btn-close" type="button" aria-label="close" onclick="closethemefilter()"></button>
+            </div>
+            //}
+
+            }
+            @if (@ViewBag.SearchCountry != null || @ViewBag.SearchCity != null || @ViewBag.SearchTheme != null)
+            {
+            <button type="button" class="filter-list border-0 px-2 ms-2" onclick="clearall()">Clear All</button>
+            }
+
+            </div>*@
+
+    </div>
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
+
+    <script src="~/js/MissionFilter.js"></script>
+
+    <script>
+
+        let close = document.querySelector("#close-btn");
+        var checkboxes = document.querySelectorAll(".checkbox");
+        let filtersSection = document.querySelector(".filters-section");
+
+        var filterList = document.querySelector(".filter-list");
+
+
+
+
+
+
+
+        for (var checkbox of checkboxes) {
+            checkbox.addEventListener("click", function () {
+                if (this.checked == true) {
+
+                    addElement(this, this.value);
+
+                }
+                else {
+
+                    removeElement(this.value);
+
+                }
+            })
+        }
+
+        /*this function will add filters*/
+
+
+
+        function addElement(current, value) {
+            let filtersSection = document.querySelector(".filters-section");
+
+            let createdTag = document.createElement('span');
+            createdTag.classList.add('filter-list');
+            createdTag.classList.add('ps-3');
+            createdTag.classList.add('pe-1');
+            createdTag.classList.add('me-2');
+            createdTag.innerHTML = value;
+
+            createdTag.setAttribute('id', value);
+            let crossButton = document.createElement('button');
+            crossButton.classList.add("filter-close-button");
+            let cross = '&times;'
+
+            crossButton.addEventListener('click', function () {
+                let elementToBeRemoved = document.getElementById(value);
+
+                console.log(elementToBeRemoved);
+                console.log(current);
+                elementToBeRemoved.remove();
+
+                current.checked = false;
+                LoadMission();
+            })
+
+            crossButton.innerHTML = cross;
+
+            createdTag.appendChild(crossButton);
+            filtersSection.appendChild(createdTag);
+            LoadMission();
+
+        }
+
+        function removeElement(value) {
+
+            let filtersSection = document.querySelector(".filters-section");
+
+            let elementToBeRemoved = document.getElementById(value);
+            filtersSection.removeChild(elementToBeRemoved);
+            LoadMission();
+
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,373 @@
+﻿.navbar-brand {
+    display: none;
+}
+
+.landing-page-mission-header {
+    font-size: 30px;
+}
+
+.landing-page-user-img {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    margin: 0 10px 0 0;
+}
+
+.landing-page-stories-link {
+    margin: 0 20px 0 0;
+}
+
+.landing-page-navbar {
+    min-height: 70px;
+}
+
+.landing-page-search-img {
+    width: 20px;
+    height: 20px;
+    align-items: center;
+}
+
+.landing-page-search-input {
+    border: none;
+}
+
+.landing-search-div {
+    min-height: 70px;
+}
+
+.landing-page-nav-border {
+    border-bottom: 1px solid #D9D9D9;
+    ;
+}
+
+.dropdown-tost {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.landing-page-filter {
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #E8E8E8;
+    border-radius: 14px;
+    opacity: 1;
+    font-size: 13px;
+    padding: 0 10px;
+    margin: 20px 20px 0 0;
+}
+
+.landing-tost-close-btn {
+    height: 8px;
+    width: 8px;
+    margin: 0 0 0 5px;
+}
+
+.landing-page-filter-close-btn {
+    border: none;
+    background: none;
+    margin: 20px 20px 0 0;
+}
+
+    .landing-page-filter-close-btn > button {
+        border: none;
+        background: none;
+        font-size: 13px;
+    }
+
+.landing-filter-nav-drop {
+    min-height: 70px;
+    border: 1px solid #E8E8E8;
+}
+
+.landing-page-sort-btn {
+    width: 100px;
+    border: 1px solid #E8E8E8;
+}
+
+
+.view-group {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.thumbnail {
+    margin-bottom: 30px;
+    padding: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+}
+
+.item.list-group-item {
+    float: none;
+    width: 100%;
+    background-color: #fff;
+    margin-bottom: 30px;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+    padding: 0 1rem;
+    border: 0;
+}
+
+    .item.list-group-item .img-event {
+        float: left;
+        width: 35%;
+    }
+
+    .item.list-group-item .list-group-image {
+        margin-right: 10px;
+    }
+
+    .item.list-group-item .thumbnail {
+        margin-bottom: 0px;
+        display: inline-block;
+    }
+
+    .item.list-group-item .caption {
+        float: left;
+        width: 65%;
+        padding-bottom: 0px !important;
+        margin: 0;
+    }
+
+    .item.list-group-item:before,
+    .item.list-group-item:after {
+        display: table;
+        content: " ";
+    }
+
+    .item.list-group-item:after {
+        clear: both;
+    }
+
+
+.img-event {
+    position: relative;
+    text-align: center;
+    color: black;
+}
+
+.landing-page-top-right {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    padding: 5px 10px;
+    border-radius: 30px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.6);
+    font-size: 14px;
+}
+
+.landing-page-bottom-right {
+    position: absolute;
+    bottom: 8px;
+    right: 16px;
+}
+
+.list-group-image {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.landing-page-btn-img {
+    border: none;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 30px;
+    padding: 6px;
+}
+
+.landing-page-bottom-center {
+    position: absolute;
+    border-radius: 30px;
+    background-color: #fff;
+    bottom: -18px;
+    left: 36%;
+    padding: 5px 10px;
+}
+.list-group-item-heading {
+    /* font-size: 22px; */
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.landing-page-list-group-item-text {
+    font-size: 13px;
+    color: #a8a8a8;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.list-group-item .thumbnail {
+    min-height: 300px;
+}
+
+.list-group-item .thumbnail .img-event .list-group-image {
+    height: 325px;
+}
+
+.landing-page-apply-mission-btn,
+.landing-page-apply-mission-btn:hover {
+    border: 2px solid #F88735;
+    border-radius: 30px;
+    color: #F88735;
+    font-weight: 500;
+}
+
+.landing-page-box-border {
+    border-bottom: 1px solid #E8E8E8;
+    margin: 5px 0px;
+    padding: 5px 0px;
+}
+
+
+/*
+.landing-page-mission-deadline-date {
+    position: relative;
+}*/
+hr {
+    flex: 1;
+    height: 2px;
+    background: #e8e8e8;
+}
+
+.date-btn {
+    border-radius: 22px;
+    border: 2px solid #E8E8E8;
+    background-color: white;
+    width: auto;
+    font-size: 13px;
+    padding: 0 30px;
+}
+
+.landing-page-mission-deadline-date-p {
+    border: 1px solid #E8E8E8;
+    border-radius: 30px;
+    position: absolute;
+    font-size: 12px;
+    padding: 0px 10px;
+    left: 20%;
+    bottom: -22px;
+    color: #000000;
+    z-index: 1;
+    background-color: #fff;
+}
+
+.landing-page-card-rating {
+    padding: 0 0 0 0;
+}
+
+.landing-page-card-vol-small {
+    color: #2e2e2e;
+    font-size: 11px;
+}
+
+.thumbnail {
+    min-height: 545px;
+}
+
+.page-item {
+    margin: 0 5px;
+}
+
+    .page-item .page-link {
+        color: #F88735;
+    }
+
+
+@media only screen and (max-width: 993px) {
+    .landing-page-responsive-filter {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .landing-page-offcanvas-btn {
+        border: none;
+        background-color: none;
+    }
+
+    .landing-page-filter-dropdown-btn {
+        width: 8px;
+        height: 8px;
+    }
+
+    .mission-listing-title {
+        margin-top: 0%;
+    }
+
+    .filters-section {
+        margin-top: 9% !important;
+    }
+
+    .sortby {
+        display: none !important;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+
+    .mission-listing-title {
+        margin-top: 3%;
+    }
+
+    .filters-section {
+        margin-top: 17% !important;
+    }
+}
+
+ul {
+    /*animation-name: none;*/
+    animation-duration: unset !important;
+    animation-fill-mode: unset !important;
+}
+
+
+/*filters*/
+
+
+.filter-list {
+    /* padding:6px 10px; */
+    background-color: white;
+    border: 1px solid #808080;
+    border-radius: 20px;
+    color: #000;
+    cursor: pointer;
+}
+.filter-list1 {
+    /* padding:6px 10px; */
+    display:none;
+    background-color: white;
+    border: 1px solid #808080;
+    border-radius: 20px;
+    color: #000;
+    cursor: pointer;
+}
+.filter-list-show {
+    /* padding:6px 10px; */
+    display: inline-block;
+    background-color: white;
+    border: 1px solid #808080;
+    border-radius: 20px;
+    color: #000;
+    cursor: pointer;
+}
+
+.filter-close-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    margin-left: 5px;
+    color: #888;
+}
+
+.filters-section {
+    margin-top: 2%;
+}

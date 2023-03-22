@@ -1,0 +1,29 @@
+﻿@using CI_Platform.Models;
+@model CI_Platform.Models.VolunteeringMission
+ @foreach (var item in Model.Comments)
+                            {
+                                                    <div class="card my-2">
+                                                        <div class="card-body d-flex">
+                                                            <div>
+                                                                <img class="vol-page-tab-comments-img" src="~/Images/volunteer1.png" alt="">
+                                                            </div>
+                                                            <div class="d-flex flex-column justify-content-around ms-3">
+                                                                <div>
+                                                                        @foreach (var user in Model.AllUsers)
+                                                                        {
+                                                                            @if(item.UserId == user.UserId)
+                                                                            {
+                            
+                                                                            <div>@user.FirstName</div>
+                                                                            }
+                        
+                                                                        }
+                                                                   <div class="vol-page-tab-comment-time">
+                                                                        @item.CreatedAt
+                                                                    </div>
+                                                                </div>
+                                                                <div class="mt-2">@item.CommetText</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                            }

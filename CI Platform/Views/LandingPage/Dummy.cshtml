@@ -1,0 +1,670 @@
+﻿@using CI_Platform.Models;
+@model CI_Platform_Entity.Models.User
+@{
+    ViewData["Title"] = "Home Page";
+}
+@{
+
+    Layout = "";
+}
+<link rel="stylesheet" href="~/css/landingpage.css" />
+
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+        //$(document).ready(function () {
+        //    $('#list').click(function (event) { event.preventDefault(); $('#products .item').addClass('list-group-item'); });
+        //    $('#grid').click(function (event) { event.preventDefault(); $('#products .item').removeClass('list-group-item'); $('#products .item').addClass('grid-group-item'); });
+        //});
+        if(localStorage.getItem("viewref")==="list"){
+            listview();
+        }
+        else{
+            gridview();
+        }
+        function listview(){
+            localStorage.setItem("viewref","list");
+            $('.item').addClass('list-group-item');
+
+        }
+
+        function gridview(){
+             localStorage.setItem("viewref","grid");
+            $('.item').removeClass('list-group-item'); $('#products .item').addClass('grid-group-item');
+
+        }
+
+    </script>
+
+<partial name="_NavbarPartial" />
+@*<div class="Main-content">
+    <div class="ms-1 me-1 mb-3 d-flex flex-row justify-content-start filter-details" id="navmaindiv">
+        <div class="filters-section d-flex align-items-end flex-wrap justify-content-start">
+            @if (ViewBag.countryElements != null)
+            {
+                @foreach (var countryElement in ViewBag.countryElements)
+                {
+                    <span class="filter-list  ps-3 pe-1 me-2 " id=@countryElement.CountryId style="margin-top:2%;">
+                        @countryElement.Name
+                        <button class="filter-close-button" id=@countryElement.CountryId onclick="removeCountryFilter('@countryElement.CountryId')">&times;</button>
+                    </span>
+                }
+
+            }
+
+            @if (ViewBag.cityElements != null)
+            {
+                @foreach (var cityElement in ViewBag.cityElements)
+                {
+                    <span class="filter-list  ps-3 pe-1 me-2 " id=@cityElement.CityId style="margin-top:2%;">@cityElement.Name
+                        <button class="filter-close-button" id=@cityElement.CityId onclick="removeCityFilter('@cityElement.CityId')">&times;</button>
+                    </span>
+                }
+            }
+            @if (ViewBag.themeElements != null)
+            {
+                @foreach (var themeElement in ViewBag.themeElements)
+                {
+                    <span class="filter-list  ps-3 pe-1 me-2 " id=@themeElement.MissionThemeId style="margin-top:2%;">@themeElement.Title
+                        <button class="filter-close-button" id="clearbutton" onclick="removeThemeFilter('@themeElement.MissionThemeId')">&times;</button>
+                    </span>
+                }
+            }
+                      <span class="filter-list  ps-3 pe-1 me-2 " id="ClearBtn" style="margin-top:2%;display:none;">Clear All
+                <button class="filter-close-button" id="clearbutton" onclick="removeUrlParams()">&times;</button>
+            </span>
+
+        </div>
+
+    </div>
+
+    <div class="first-row">
+        <div class="d-flex flex-row justify-content-between">
+            <div class="d-inline-block"><h6 class="d-inline-block">Explore</h6>&nbsp<h4 class="d-inline-block">@ViewBag.NoOfMissions Missions</h4></div>
+
+            <div>
+                <div class="dropdown d-inline-block">
+                    <button class="btn sortBy-dropdown dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Sort By
+                        <i class="bi bi-chevron-down"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                        @if (ViewBag.currentUrl.Contains('?'))
+                        {
+                            <li><a class="dropdown-item" href="@ViewBag.currentUrl&sortOrder=newest">Newest</a></li>
+                            <li><a class="dropdown-item" href="@ViewBag.currentUrl&sortOrder=oldest">Oldest</a></li>
+                            <li><a class="dropdown-item" href="@ViewBag.currentUrl&sortOrder=lowest">Lowest available seats </a></li>
+                            <li><a class="dropdown-item" href="@ViewBag.currentUrl&sortOrder=highest">Highest available seats </a></li>
+                            <li><a class="dropdown-item" href="@ViewBag.currentUrl&sortOrder=favourites">My favourites </a></li>
+                            <li><a class="dropdown-item" href="@ViewBag.currentUrl&sortOrder=deadline">Registration deadline</a></li>
+                        }
+                        else
+                        {
+                            <li><a class="dropdown-item" href="@ViewBag.currentUrl/?sortOrder=newest">Newest</a></li>
+                            <li><a class="dropdown-item" href="@ViewBag.currentUrl/?sortOrder=oldest">Oldest</a></li>
+                            <li><a class="dropdown-item" href="@ViewBag.currentUrl/?sortOrder=lowest">Lowest available seats </a></li>
+                            <li><a class="dropdown-item" href="@ViewBag.currentUrl/?sortOrder=highest">Highest available seats </a></li>
+                            <li><a class="dropdown-item" href="@ViewBag.currentUrl/?sortOrder=favourites">My favourites </a></li>
+                            <li><a class="dropdown-item" href="@ViewBag.currentUrl/?sortOrder=deadline">Registration deadline</a></li>
+                            
+                        }
+
+                    </ul>
+                </div>
+                <img class="ms-3 gridBtn" src="~/images/grid.png" onclick="grid()" />
+                <img class="ms-2 listBtn" src="~/images/list.png" onclick="list()" />
+            </div>
+        </div>
+    </div>
+
+    <div class="missions-section">
+        <div class="py-5">
+            <div class="row container">
+                
+                 @foreach (var item in ViewBag.missions)
+                {
+
+                    if (item.missionType == "0")
+                    {
+                        <div class="item col-xs-4 col-lg-4 col-md-6 mt-5">
+                            <div class="thumbnail card w-100 h-100">
+                                <div class="img-event h-100">
+                                    <img class="group list-group-image img-fluid h-100" style="width:100%;"
+                                 src="~/images/Grow-Trees-On-the-path-to-environment-sustainability.png" alt="" />
+                                    <div class="landing-page-top-right city"><img src="~/images/pin.png" alt=""> @item.City</div>
+                                    @*<div class="country" hidden><img src="~/images/pin.png" alt=""> @item.Country</div>
+                                    <div class="landing-page-bottom-right d-flex flex-column">
+                                        <button class="mb-2 landing-page-btn-img">
+                                            <img src="~/images/heart.png" alt="">
+                                        </button><button class="landing-page-btn-img">
+                                            <img src="~/images/user.png"
+                                         alt="">
+                                        </button>
+                                    </div>
+
+                                    <div class="landing-page-bottom-center theme">@item.Theme</div>
+                                </div>
+                                <div class="caption card-body">
+                                    <h4 class="group card-title inner list-group-item-heading">
+                                        @item.Title
+                                    </h4>
+                                    <p class="group inner landing-page-list-group-item-text">
+                                        @item.Description
+                                    </p>
+                                    <div class="d-flex justify-content-between mb-2 landing-page-card-rating">
+                                        <div>@item.Organization</div>
+                                        <div>
+                                            <img src="~/images/selected-star.png" alt="">
+                                            <img src="~/images/selected-star.png" alt="">
+                                            <img src="~/images/selected-star.png" alt="">
+                                            <img src="~/images/star.png" alt="">
+                                            <img src="~/images/star.png" alt="">
+                                        </div>
+                                    </div>
+
+                                    <div class="rule d-flex mt-1">
+                                        <hr>
+                                        <button class="date-btn mt-1">@item.StartDateEndDate</button>
+                                        <hr>
+                                    </div>
+                                    <div class="row landing-page-box-border">
+                                        <div class="col-6 col-md-6 d-flex align-items-center">
+                                            <p class="lead me-2 pt-2">
+                                                <img src="~/images/Seats-left.png" alt="">
+                                                <div>
+                                                    <div>10</div>
+                                                    <div class="landing-page-card-vol-small">Seats Left</div>
+                                                </div>
+                                            </p>
+                                        </div>
+                                        <div class="col-6 col-md-6 d-flex align-items-center">
+                                            <p class="lead me-2 pt-2">
+                                                <img src="~/images/deadline.png" alt="">
+                                                <div>
+                                                    <div>09/01/2023</div>
+                                                    <div class="landing-page-card-vol-small">Deadline</div>
+                                                </div>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        <div class="mb-2">
+                                            <a class="btn mt-2 landing-page-apply-mission-btn" href="#">
+                                                Apply <img src="~/images/right-arrow.png" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else if (item.missionType == "1")
+                    {
+                        <div class="item col-xs-4 col-lg-4 col-md-6 mt-5">
+                            <div class="thumbnail card w-100 h-100">
+                                <div class="img-event h-100">
+                                    <img class="group list-group-image img-fluid h-100" style="width:100%;"
+                                 src="~/images/Grow-Trees-On-the-path-to-environment-sustainability.png" alt="" />
+                                    <div class="landing-page-top-right city"><img src="~/images/pin.png" alt=""> @item.City</div>
+                                    @*<div class="country" hidden><img src="~/images/pin.png" alt=""> @item.Country</div>
+                                    <div class="landing-page-bottom-right d-flex flex-column">
+                                        <button class="mb-2 landing-page-btn-img">
+                                            <img src="~/images/heart.png" alt="">
+                                        </button><button class="landing-page-btn-img">
+                                            <img src="~/images/user.png"
+                                         alt="">
+                                        </button>
+                                    </div>
+
+                                    <div class="landing-page-bottom-center theme">@item.Theme</div>
+                                </div>
+                                <div class="caption card-body">
+                                    <h4 class="group card-title inner list-group-item-heading">
+                                        @item.Title
+                                    </h4>
+                                    <p class="group inner landing-page-list-group-item-text">
+                                        @item.Description
+                                    </p>
+                                    <div class="d-flex justify-content-between mb-2 landing-page-card-rating">
+                                        <div>@item.Organization</div>
+                                        <div>
+                                            <img src="~/images/selected-star.png" alt="">
+                                            <img src="~/images/selected-star.png" alt="">
+                                            <img src="~/images/selected-star.png" alt="">
+                                            <img src="~/images/star.png" alt="">
+                                            <img src="~/images/star.png" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="rule d-flex mt-1">
+                                        <hr>
+                                        <button class="date-btn mt-1">From @item.StartDateEndDate</button>
+                                        <hr>
+                                    </div>
+                                    <div class="row landing-page-box-border">
+
+                                        <div class="col-6 col-md-6 d-flex align-items-center">
+                                            <p class="lead me-2 pt-2">
+                                                <img src="~/images/Seats-left.png" alt="">
+                                                <div>
+                                                    <div>10</div>
+                                                    <div class="landing-page-card-vol-small">Seats Left</div>
+                                                </div>
+                                            </p>
+                                        </div>
+                                        <div class="col-6 col-md-6 d-flex align-items-center">
+                                            <p class="lead me-2 pt-2">
+                                                <img src="~/images/achieved.png" alt="">
+                                                <div style="width: 100%;">
+                                                    <div>
+
+                                                        <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25"
+                                                     aria-valuemin="0" aria-valuemax="100" style="height: 10px;">
+                                                            <div class="progress-bar bg-success" style="width: 80%;"></div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="landing-page-card-vol-small">8000 achived</div>
+                                                </div>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        <div class="">
+                                            <a class="btn mt-2 landing-page-apply-mission-btn" href="#">
+                                                Apply <img src="~/images/right-arrow.png" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="missions-section-list d-none">
+        <div class="list-card mb-3 mt-3 d-flex flex-row">
+            <div class="img-container">
+                    <img
+                        class="list-img"
+                        src="~/images/Grow-Trees-On-the-path-to-environment-sustainability-1.png" />
+            </div>
+            <div class="list-card-desc ps-5 w-100">
+                  <div class="top-row">
+                      <div>
+                          <img src="~/images/pin1.png" />
+                      </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+
+    @if (ViewBag.currentUrl.Contains('?'))
+    {
+        <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+            <ul class="pagination">
+                <li class="page-item @(ViewBag.CurrentPage == 0 ? "disabled" : "")">
+                    <a class="page-link" href="@ViewBag.currentUrl&pageIndex=@(ViewBag.CurrentPage - 1)" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                @for (int i = 0; i < ViewBag.TotalPages; i++)
+                {
+                    <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                        <a class="page-link" href="@ViewBag.currentUrl&pageIndex=@i">@((i + 1).ToString())</a>
+                    </li>
+                }
+                <li class="page-item @(ViewBag.CurrentPage == ViewBag.TotalPages - 1 ? "disabled" : "")">
+                    <a class="page-link" href="@ViewBag.currentUrl&pageIndex=@(ViewBag.CurrentPage + 1)" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    }else
+        {
+        <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+            <ul class="pagination">
+                <li class="page-item @(ViewBag.CurrentPage == 0 ? "disabled" : "")">
+                    <a class="page-link" href="@ViewBag.currentUrl?pageIndex=@(ViewBag.CurrentPage - 1)"aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                @for (int i = 0; i < ViewBag.TotalPages; i++)
+                {
+                    <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                        <a class="page-link" href="@ViewBag.currentUrl?pageIndex=@i">@((i + 1).ToString())</a>
+                    </li>
+                }
+                <li class="page-item @(ViewBag.CurrentPage == ViewBag.TotalPages - 1 ? "disabled" : "")">
+                    <a class="page-link" href="@ViewBag.currentUrl?pageIndex=@(ViewBag.CurrentPage + 1)" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    }
+</div>*@
+
+<div class="container">
+            <div class="ms-1 me-1 mb-3 d-flex flex-row justify-content-start filter-details" id="navmaindiv">
+                <div class="filters-section d-flex align-items-end flex-wrap justify-content-start">
+                    @if (ViewBag.countryElements != null)
+                    {
+                        @foreach (var countryElement in ViewBag.countryElements)
+                        {
+                            <span class="filter-list  ps-3 pe-1 me-2 " id=@countryElement.CountryId style="margin-top:2%;">
+                                @countryElement.Name
+                                <button class="filter-close-button" id=@countryElement.CountryId onclick="removeCountryFilter('@countryElement.CountryId')">&times;</button>
+                            </span>
+                        }
+
+                    }
+
+                    @if (ViewBag.cityElements != null)
+                    {
+                        @foreach (var cityElement in ViewBag.cityElements)
+                        {
+                            <span class="filter-list  ps-3 pe-1 me-2 " id=@cityElement.CityId style="margin-top:2%;">@cityElement.Name
+                                <button class="filter-close-button" id=@cityElement.CityId onclick="removeCityFilter('@cityElement.CityId')">&times;</button>
+                            </span>
+                        }
+                    }
+
+                    @if (ViewBag.themeElements != null)
+                    {
+                        @foreach (var themeElement in ViewBag.themeElements)
+                        {
+                            <span class="filter-list  ps-3 pe-1 me-2 " id=@themeElement.MissionThemeId style="margin-top:2%;">@themeElement.Title
+                                <button class="filter-close-button" id="clearbutton" onclick="removeThemeFilter('@themeElement.MissionThemeId')">&times;</button>
+                            </span>
+                        }
+                    }
+                              <span class="filter-list  ps-3 pe-1 me-2 " id="ClearBtn" style="margin-top:2%;display:none;">Clear All
+                        <button class="filter-close-button" id="clearbutton" onclick="removeUrlParams()">&times;</button>
+                    </span>
+
+                </div>
+
+             </div>
+            <div class="d-flex container align-items-center justify-content-between mission-listing-title">
+                        <div class="landing-page-mission-header">
+                            Explore <b>@ViewBag.NoOfMissions missions</b>
+                        </div>
+
+                
+
+                    
+
+                        
+                       <div class="d-flex">
+
+                                
+                        <div class="dropdown ms-3 mt-2 pe-3 ps-2 d-inline-block">
+                            <button class="btn text-reset me-0 sortBy-dropdown dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Sort By
+                                <i class="bi bi-chevron-down"></i>
+                            </button>
+                            <ul class="dropdown-menu">
+                                @if (ViewBag.currentUrl.Contains('?'))
+                                {
+                                    <li><a class="dropdown-item" href="@ViewBag.currentUrl&sortOrder=newest">Newest</a></li>
+                                    <li><a class="dropdown-item" href="@ViewBag.currentUrl&sortOrder=oldest">Oldest</a></li>
+                                    <li><a class="dropdown-item" href="@ViewBag.currentUrl&sortOrder=lowest">Lowest available seats </a></li>
+                                    <li><a class="dropdown-item" href="@ViewBag.currentUrl&sortOrder=highest">Highest available seats </a></li>
+                                    <li><a class="dropdown-item" href="@ViewBag.currentUrl&sortOrder=favourites">My favourites </a></li>
+                                    <li><a class="dropdown-item" href="@ViewBag.currentUrl&sortOrder=deadline">Registration deadline</a></li>
+                                }
+                                else
+                                {
+                                    <li><a class="dropdown-item" href="@ViewBag.currentUrl/?sortOrder=newest">Newest</a></li>
+                                    <li><a class="dropdown-item" href="@ViewBag.currentUrl/?sortOrder=oldest">Oldest</a></li>
+                                    <li><a class="dropdown-item" href="@ViewBag.currentUrl/?sortOrder=lowest">Lowest available seats </a></li>
+                                    <li><a class="dropdown-item" href="@ViewBag.currentUrl/?sortOrder=highest">Highest available seats </a></li>
+                                    <li><a class="dropdown-item" href="@ViewBag.currentUrl/?sortOrder=favourites">My favourites </a></li>
+                                    <li><a class="dropdown-item" href="@ViewBag.currentUrl/?sortOrder=deadline">Registration deadline</a></li>
+                            
+                                }
+
+                            </ul>
+                        </div>
+                        <div class="btn-group d-flex">
+
+                            <button class="btn" id="grid" onclick="gridview()">
+                                <img src="~/images/grid.png" alt="">
+                            </button>
+                            <button class="btn" id="list" onclick="listview()">
+                                <img src="~/images/list.png" alt="">
+                            </button>
+                        </div>
+                       </div>     
+                            
+                        
+                    
+                
+            </div>
+            <div id="products" class="row container view-group">
+
+
+                @foreach (var item in ViewBag.missions)
+                {
+
+                    if (item.missionType == "0")
+                    {
+                        <div class="item col-xs-4 col-lg-4 col-md-6 mt-5">
+                            <div class="thumbnail card w-100 h-100">
+                                <div class="img-event h-100">
+                                    <img class="group list-group-image img-fluid h-100" style="width:100%;"
+                                 src="~/images/Grow-Trees-On-the-path-to-environment-sustainability.png" alt="" />
+                                    <div class="landing-page-top-right city"><img src="~/images/pin.png" alt=""> @item.City</div>
+                                    @*<div class="country" hidden><img src="~/images/pin.png" alt=""> @item.Country</div>*@
+                                    <div class="landing-page-bottom-right d-flex flex-column">
+                                        <button class="mb-2 landing-page-btn-img">
+                                            <img src="~/images/heart.png" alt="">
+                                        </button><button class="landing-page-btn-img">
+                                            <img src="~/images/user.png"
+                                         alt="">
+                                        </button>
+                                    </div>
+
+                                    <div class="landing-page-bottom-center theme">@item.Theme</div>
+                                </div>
+                                <div class="caption card-body">
+                                    <h4 class="group card-title inner list-group-item-heading">
+                                        @item.Title
+                                    </h4>
+                                    <p class="group inner landing-page-list-group-item-text">
+                                        @item.Description
+                                    </p>
+                                    <div class="d-flex justify-content-between mb-2 landing-page-card-rating">
+                                        <div>@item.Organization</div>
+                                        <div>
+                                            <img src="~/images/selected-star.png" alt="">
+                                            <img src="~/images/selected-star.png" alt="">
+                                            <img src="~/images/selected-star.png" alt="">
+                                            <img src="~/images/star.png" alt="">
+                                            <img src="~/images/star.png" alt="">
+                                        </div>
+                                    </div>
+
+                                    <div class="rule d-flex mt-1">
+                                        <hr>
+                                        <button class="date-btn mt-1">@item.StartDateEndDate</button>
+                                        <hr>
+                                    </div>
+                                    <div class="row landing-page-box-border">
+                                        <div class="col-6 col-md-6 d-flex align-items-center">
+                                            <p class="lead me-2 pt-2">
+                                                <img src="~/images/Seats-left.png" alt="">
+                                                <div>
+                                                    <div>10</div>
+                                                    <div class="landing-page-card-vol-small">Seats Left</div>
+                                                </div>
+                                            </p>
+                                        </div>
+                                        <div class="col-6 col-md-6 d-flex align-items-center">
+                                            <p class="lead me-2 pt-2">
+                                                <img src="~/images/deadline.png" alt="">
+                                                <div>
+                                                    <div>09/01/2023</div>
+                                                    <div class="landing-page-card-vol-small">Deadline</div>
+                                                </div>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        <div class="mb-2">
+                                            <a class="btn mt-2 landing-page-apply-mission-btn" href="#">
+                                                Apply <img src="~/images/right-arrow.png" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else if (item.missionType == "1")
+                    {
+                        <div class="item col-xs-4 col-lg-4 col-md-6 mt-5">
+                            <div class="thumbnail card w-100 h-100">
+                                <div class="img-event h-100">
+                                    <img class="group list-group-image img-fluid h-100" style="width:100%;"
+                                 src="~/images/Grow-Trees-On-the-path-to-environment-sustainability.png" alt="" />
+                                    <div class="landing-page-top-right city"><img src="~/images/pin.png" alt=""> @item.City</div>
+                                    @*<div class="country" hidden><img src="~/images/pin.png" alt=""> @item.Country</div>*@
+                                    <div class="landing-page-bottom-right d-flex flex-column">
+                                        <button class="mb-2 landing-page-btn-img">
+                                            <img src="~/images/heart.png" alt="">
+                                        </button><button class="landing-page-btn-img">
+                                            <img src="~/images/user.png"
+                                         alt="">
+                                        </button>
+                                    </div>
+
+                                    <div class="landing-page-bottom-center theme">@item.Theme</div>
+                                </div>
+                                <div class="caption card-body">
+                                    <h4 class="group card-title inner list-group-item-heading">
+                                        @item.Title
+                                    </h4>
+                                    <p class="group inner landing-page-list-group-item-text">
+                                        @item.Description
+                                    </p>
+                                    <div class="d-flex justify-content-between mb-2 landing-page-card-rating">
+                                        <div>@item.Organization</div>
+                                        <div>
+                                            <img src="~/images/selected-star.png" alt="">
+                                            <img src="~/images/selected-star.png" alt="">
+                                            <img src="~/images/selected-star.png" alt="">
+                                            <img src="~/images/star.png" alt="">
+                                            <img src="~/images/star.png" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="rule d-flex mt-1">
+                                        <hr>
+                                        <button class="date-btn mt-1">From @item.StartDateEndDate</button>
+                                        <hr>
+                                    </div>
+                                    <div class="row landing-page-box-border">
+
+                                        <div class="col-6 col-md-6 d-flex align-items-center">
+                                            <p class="lead me-2 pt-2">
+                                                <img src="~/images/Seats-left.png" alt="">
+                                                <div>
+                                                    <div>10</div>
+                                                    <div class="landing-page-card-vol-small">Seats Left</div>
+                                                </div>
+                                            </p>
+                                        </div>
+                                        <div class="col-6 col-md-6 d-flex align-items-center">
+                                            <p class="lead me-2 pt-2">
+                                                <img src="~/images/achieved.png" alt="">
+                                                <div style="width: 100%;">
+                                                    <div>
+
+                                                        <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25"
+                                                     aria-valuemin="0" aria-valuemax="100" style="height: 10px;">
+                                                            <div class="progress-bar bg-success" style="width: 80%;"></div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="landing-page-card-vol-small">8000 achived</div>
+                                                </div>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        <div class="">
+                                            <a class="btn mt-2 landing-page-apply-mission-btn" href="#">
+                                                Apply <img src="~/images/right-arrow.png" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+
+                }
+
+                @if (ViewBag.currentUrl.Contains('?'))
+    {
+        <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+            <ul class="pagination">
+                <li class="page-item @(ViewBag.CurrentPage == 0 ? "disabled" : "")">
+                    <a class="page-link" href="@ViewBag.currentUrl&pageIndex=@(ViewBag.CurrentPage - 1)" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                @for (int i = 0; i < ViewBag.TotalPages; i++)
+                {
+                    <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                        <a class="page-link" href="@ViewBag.currentUrl&pageIndex=@i">@((i + 1).ToString())</a>
+                    </li>
+                }
+                <li class="page-item @(ViewBag.CurrentPage == ViewBag.TotalPages - 1 ? "disabled" : "")">
+                    <a class="page-link" href="@ViewBag.currentUrl&pageIndex=@(ViewBag.CurrentPage + 1)" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    }else
+        {
+        <nav aria-label="Page navigation example" class="d-flex justify-content-center mt-4">
+            <ul class="pagination">
+                <li class="page-item @(ViewBag.CurrentPage == 0 ? "disabled" : "")">
+                    <a class="page-link" href="@ViewBag.currentUrl?pageIndex=@(ViewBag.CurrentPage - 1)"aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                @for (int i = 0; i < ViewBag.TotalPages; i++)
+                {
+                    <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                        <a class="page-link" href="@ViewBag.currentUrl?pageIndex=@i">@((i + 1).ToString())</a>
+                    </li>
+                }
+                <li class="page-item @(ViewBag.CurrentPage == ViewBag.TotalPages - 1 ? "disabled" : "")">
+                    <a class="page-link" href="@ViewBag.currentUrl?pageIndex=@(ViewBag.CurrentPage + 1)" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    }
+
+
+
+
+            </div>
+        </div>
+        <script src="~/js/site.js">
+        </script>

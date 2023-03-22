@@ -1,0 +1,80 @@
+﻿@model CI_Platform.Models.ResetpassModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" text="text/css" />
+    <link rel="stylesheet" href="~/css/loginstyle.css" />
+    <script src="JavaScript\bootstrap.bundle.min.js"></script>
+    <title>LoginPage</title>
+</head>
+<body>
+            
+             <div class="col-lg-4 col-md-12 col-sm-12">
+            <div class="card ms-5 me-4 border-0 centerResetPass">
+                <div class="card-body mt-5">
+                    <form asp-controller="Home" asp-action="Resetpass" method="post">
+                        <input asp-for="Email" type="Email" class="form-control" id="exampleInputEmail1" hidden  aria-describedby="emailHelp" placeholder=".......">
+                        @*<input asp-for="UpdatedAt" class="form-control" id="exampleInputEmail1" hidden value="@DateTime.Now">*@
+                        <input asp-for="Token"  class="form-control" id="exampleInputEmail1" hidden  aria-describedby="emailHelp" placeholder=".......">
+                        <h4 class="d-flex justify-content-center mt-4">New Password</h4>
+                        <p class="d-flex justify-content-center mt-2 createacc">
+                            Please enter a new password in the fields below.</p>
+                        <div class="mb-3">
+                          <label asp-for="Password" for="exampleInputPassword" class="form-label">New Password</label>
+                          <input asp-for="Password" type="password" class="form-control" id="reg-pass" required aria-describedby="emailHelp" placeholder=".......">
+                        </div>
+                        <div class="mb-3">
+                          <label asp-for="ConfirmPassword" for="exampleInputPassword1" class="form-label">Confirm New Password</label>
+                          <input asp-for="ConfirmPassword" type="password" class="form-control" required id="reg-con-pass" onfocusout="validatePassword()" onkeyup="confirmpass()" placeholder=".......">
+                        </div>
+                        <span class="text-danger" style="display:none;" id="pass-conf-err">Password and Confirm Password must be same </span>
+                        <button type="submit" class="button mt-3" id="reg-btn">Change Password</button>
+                       @* <button type="button" class="button mt-3" onclick="location.href='@Url.Action("Resetpass", "Home")'">Reset my Password</button>*@
+                        <p class="d-flex justify-content-center mt-4"><a class="nav-link text-dark registerlogin" asp-area="" asp-controller="Login" asp-action="Login">Login</a></p>
+                    </form> 
+                    <p class="d-flex justify-content-center mt-5 resetprivacy">Privacy Policy</p> 
+                </div>
+              </div>
+            </div>
+            <script>
+        function emailexist(){
+                 
+            document.getElementById("text-danger").style.display="none";
+                        
+        }
+                        
+        var form = document.querySelector('form');
+
+
+        function validatePassword() {
+
+        var x = document.getElementById("reg-pass").value;
+        var y = document.getElementById("reg-con-pass").value;
+        var z = document.getElementById("pass-conf-err");
+
+        if (x != y) {
+
+        var submitButton = document.getElementById("reg-btn");
+        submitButton.disabled = true;
+        z.style.display="block";
+
+        }
+        else {
+
+        var submitButton = document.getElementById("reg-btn");
+        submitButton.disabled = false;
+        
+        }
+        }
+
+        function confirmpass(){
+            document.getElementById("pass-conf-err").style.display="none";
+        }
+
+    </script>
+</body>
+</html>
