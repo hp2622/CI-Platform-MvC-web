@@ -1,0 +1,685 @@
+﻿@using CI_Platform.Models
+@model CI_Platform.Models.VolunteeringMission
+@{
+    Layout = "_Singlenavbar";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="./css/bootstrap.min.css" rel="stylesheet" text="text/css" />
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="~/css/singlemission.css">
+
+
+    <script>
+        function onImageChange(imgCount) {
+            var img = document.getElementById("vol-page-crousel");
+            var subImage = document.getElementsByClassName(`vol-img-change-${imgCount}`);
+            console.log(subImage[0].src)
+            img.src = subImage[0].src
+        }
+
+    </script>
+
+
+</head>
+
+<body>
+    @* @for (var item in Model)
+    {*@
+
+
+    <div class="container mt-5">
+        <div class="row volunteering-sec-1 d-flex">
+            <div class="col-12 col-md-6 vol-page-img-sec d-flex flex-column">
+                <div>
+                    <img class="img-fluid vol-page-crousel" id="vol-page-crousel"
+                         src="~/Images/CSR-initiative-stands-for-Coffee--and-Farmer-Equity-3.png" alt="">
+                </div>
+                <div class="d-flex mt-2" style="height: 100px;">
+                    <div id="carouselExample" class="carousel slide">
+                        <div class="carousel-inner" style="height: 100px;">
+                            <div class="carousel-item active vol-page-crousel">
+                                <div class="row">
+                                    <div class="col">
+                                        <img class="img-fluid vol-img-change-1 vol-img-change-n"
+                                             src="~/Images/Grow-Trees-On-the-path-to-environment-sustainability-login.png" alt=""
+                                             onclick="onImageChange(1)">
+                                    </div>
+                                    <div class="col">
+                                        <img class="img-fluid vol-img-change-2 vol-img-change-n"
+                                             src="~/Images/Grow-Trees-On-the-path-to-environment-sustainability-login.png"
+                                             alt="" onclick="onImageChange(2)">
+                                    </div>
+                                    <div class="col">
+                                        <img class="img-fluid vol-img-change-3 vol-img-change-n"
+                                             src="~/Images/Grow-Trees-On-the-path-to-environment-sustainability-login.png" alt=""
+                                             onclick="onImageChange(3)">
+                                    </div>
+                                    <div class="col">
+                                        <img class="img-fluid vol-img-change-4 vol-img-change-n"
+                                             src="~/Images/Grow-Trees-On-the-path-to-environment-sustainability-login.png" alt=""
+                                             onclick="onImageChange(4)">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item vol-page-crousel">
+                                <div class="row">
+                                    <div class="col">
+                                        <img class="img-fluid vol-img-change-5 vol-img-change-n"
+                                             src="~/Images/CSR-initiative-stands-for-Coffee--and-Farmer-Equity-2.png" alt=""
+                                             onclick="onImageChange(5)">
+                                    </div>
+                                    <div class="col">
+                                        <img class="img-fluid vol-img-change-6 vol-img-change-n"
+                                             src="~/Images/CSR-initiative-stands-for-Coffee--and-Farmer-Equity-2.png"
+                                             alt="" onclick="onImageChange(6)">
+                                    </div>
+                                    <div class="col">
+                                        <img class="img-fluid vol-img-change-7 vol-img-change-n"
+                                             src="~/Images/CSR-initiative-stands-for-Coffee--and-Farmer-Equity-2.png" alt=""
+                                             onclick="onImageChange(7)">
+                                    </div>
+                                    <div class="col">
+                                        <img class="img-fluid vol-img-change-8 vol-img-change-n"
+                                             src="~/Images/CSR-initiative-stands-for-Coffee--and-Farmer-Equity-2.png" alt=""
+                                             onclick="onImageChange(8)">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                                data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                                data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+
+                </div>
+                <div class="mt-3 d-flex justify-content-center">
+                    <button class="btn vol-page-apply-btn apply-btn-small-screen mt-5">
+                        Apply Now <img src="~/Images/right-arrow.png"
+                                       alt="">
+                    </button>
+                </div>
+            </div>
+
+
+
+            <div class="col-12 col-md-6">
+                <div class="card vol-page-card ms-4">
+                    <div class="card-body">
+                        <h5 class="card-title">@Model.SingleTitle</h5>
+                        <p class="card-text">@Model.Description</p>
+
+                        <div>
+                            <div class="d-flex align-items-center">
+                                <hr>
+                                @if (@Model.missionType == "1")
+                                {
+                                    <div class="vol-page-hr-goal">
+                                        @Model.GoalText
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="vol-page-hr-goal">
+                                        @Model.StartDateEndDate
+                                    </div>
+                                }
+
+                                <hr>
+                            </div>
+                            @if (@Model.missionType == "1")
+                            {
+                                <div class="row volunteering-page-box-border">
+                                    <div class="col-6 col-md-6 d-flex align-items-center justify-content-center">
+                                        <p class="lead me-2 pt-2">
+                                            <img src="~/Images/Seats-left.png" alt="">
+                                            <div>
+                                                <div>10</div>
+                                                <div class="landing-page-card-vol-small">Seats Left</div>
+                                            </div>
+                                        </p>
+                                    </div>
+                                    <div class="col-6 col-md-6 d-flex align-items-center">
+                                        <p class="lead me-2 pt-2">
+                                            <img src="~/Images/achieved.png" alt="">
+                                            <div style="width: 85%;">
+                                                <div>
+
+                                                    <div class="progress" role="progressbar" aria-label="Success example"
+                                                         aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"
+                                                         style="height: 10px;">
+                                                        <div class="progress-bar" style="width: 25%;"></div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="landing-page-card-vol-small">8000 achived</div>
+                                            </div>
+                                        </p>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="row volunteering-page-box-border">
+                                    <div class="row volunteering-page-box-border" style="margin-left: 10%;">
+                                        <div class="col-4 col-md-4 ms-3 d-flex align-items-center">
+                                            <p class="lead me-2 pt-2">
+                                                <img src="~/images/Seats-left.png" alt="">
+                                                <div>
+                                                    <div>10</div>
+                                                    <div class="landing-page-card-vol-small">Seats Left</div>
+                                                </div>
+                                            </p>
+                                        </div>
+                                        <div class="col-6 col-md-6 d-flex align-items-center">
+                                            <p class="lead me-2 pt-2">
+                                                <img src="~/images/deadline.png" alt="">
+                                                <div>
+                                                    <div>09/01/2023</div>
+                                                    <div class="landing-page-card-vol-small">Deadline</div>
+                                                </div>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+
+                            <hr>
+                            <div class="d-flex justify-content-around vol-page-group-btn">
+                                <div>
+
+
+
+                                    @{
+                                        var userid = Context.Session.GetString("userid");
+                                    }
+                                    @if (Model.UserId == userid && Model.isFavrouite != null)
+                                    {
+                                        <button class="btn vol-page-group-btn-btn" id="afterApply" onclick="addToFav(@Model.MissionId,@userid)">
+                                            <img src="~/Images/heart red.png" alt="" height="25px" width="25px"> Already Added
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        <button class="btn vol-page-group-btn-btn" id="beforeApply" onclick="addToFav(@Model.MissionId,@userid)">
+                                            <img src="~/Images/heart1.png" alt=""> Add
+                                            to Favourite
+                                        </button>
+                                    }
+
+
+
+
+
+
+                                </div>
+                                <div>
+                                    <button class="btn vol-page-group-btn-btn" data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="~/Images/user-active.svg" alt="" style="height: 23px; width: 23px;"> Recommend to a Co-Worker</button>
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Recomand to </h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body" style=" width: 96%; max-height: 300px; overflow-y: scroll; overflow-x: hidden;">
+                                                    @foreach (var user in @ViewBag.AllUsers)
+                                                    {
+                                                        <button class="dropdown-item recomandtouser ms-3 d-flex" value="@user.Email" name="@user.FirstName" onclick="recomand('@user.Email',@Model.MissionId)" id="recomandUser" style="border-bottom:1px solid #cfcfcf;">
+                                                            <div>
+                                                                <img src="~/Images/profile.png" class="mt-1 mb-1" height="35px" width="35px" />
+                                                            </div>
+                                                            <div class="ms-2 mt-2">
+
+                                                                @user.FirstName @user.LastName
+                                                            </div>
+                                                            <div class="btn btn-primary mt-1" style="right: 7px;position: absolute;">
+                                                                Recommand
+                                                            </div>
+
+                                                        </button>
+
+                                                    }
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="d-flex align-items-center mt-2">
+                                <hr>
+                                <div class="vol-page-hr-goal-star">
+
+
+
+                                    @if (@Model.Rating != null)
+                                    {
+
+                                        int count = 0;
+
+                                        @for (var i = 1; i <= @Model.Rating; i++)
+                                        {
+                                            <i class="bi bi-star-fill" id="@i" onclick="addRating(this.id,@Model.MissionId,@userid)"></i>
+                                            count++;
+                                        }
+                                        @for (var k = count + 1; k <= 5; k++)
+                                        {
+                                            <i class="bi bi-star" id="@k" onclick="addRating(this.id,@Model.MissionId,@userid)"></i>
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        <i class="bi bi-star" id="1" onclick="addRating(this.id,@Model.MissionId,@userid)"></i>
+                                        <i class="bi bi-star" id="2" onclick="addRating(this.id,@Model.MissionId,@userid)"></i>
+                                        <i class="bi bi-star" id="3" onclick="addRating(this.id,@Model.MissionId,@userid)"></i>
+                                        <i class="bi bi-star" id="4" onclick="addRating(this.id,@Model.MissionId,@userid)"></i>
+                                        <i class="bi bi-star" id="5" onclick="addRating(this.id,@Model.MissionId,@userid)"></i>
+                                    }
+
+                                </div>
+                                <hr>
+                            </div>
+
+                            <div class="row d-flex mt-3 ms-1">
+                                <div class=" col-md-3 right-side-4-box col-6">
+                                    <img src="~/Images/pin1.png" alt="" class="vol-page-main-card-sub-logo mt-2">
+                                    <div class="mt-3 mb-0">
+                                        <div class="mt-2">city</div>
+                                        <div class="mb-2">@Model.City</div>
+                                    </div>
+                                </div>
+                                <div class=" col-md-3 right-side-4-box col-6">
+                                    <img src="~/Images/pin1.png" alt="" class="vol-page-main-card-sub-logo mt-2">
+                                    <div class="mt-3 mb-0">
+                                        <div class="mt-2">Theme</div>
+                                        <div class="mb-2">@Model.Theme</div>
+                                    </div>
+                                </div>
+                                <div class=" col-md-3 right-side-4-box col-6">
+                                    <img src="~/Images/pin1.png" alt="" class="vol-page-main-card-sub-logo mt-2">
+                                    <div class="mt-3 mb-0">
+                                        <div class="mt-2">Date</div>
+                                        <div class="mb-2">@Model.EndDate?.ToShortDateString()</div>
+                                    </div>
+                                </div>
+                                <div class=" col-md-3 right-side-4-box right-side-4-box-org col-6">
+                                    <img src="~/Images/pin1.png" alt="" class="vol-page-main-card-sub-logo mt-2">
+                                    <div class="mt-3 mb-0">
+                                        <div class="mt-2">Organization</div>
+                                        <div class="mb-2">@Model.Organization</div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="mt-3 d-flex justify-content-center">
+                                <button class="btn vol-page-apply-btn apply-btn-large-screen">
+                                    Apply Now <img src="~/Images/right-arrow.png"
+                                                   alt="">
+                                </button>
+                            </div>
+                        </div>
+
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container row volunteering-sec-2 mt-3">
+
+            <div class="col-12 col-lg-8">
+
+
+                <ul class="nav nav-tabs vol-page-nav" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
+                                data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane"
+                                aria-selected="true">
+                            Mission
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="profile-tab" data-bs-toggle="tab"
+                                data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane"
+                                aria-selected="false">
+                            Organization
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="contact-tab" data-bs-toggle="tab"
+                                data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane"
+                                aria-selected="false">
+                            Comments
+                        </button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
+                         tabindex="0">
+
+                        <div>
+                            <div class="vol-page-tab-content-heading">Introduction</div>
+                            <div class="vol-page-tab-content-info">
+                                @Model.Description
+                               
+                            </div>
+                        </div>
+                       
+                        <div>
+                            <div class="vol-page-tab-content-heading">Documents</div>
+                            <div class="d-flex row">
+                                <div class="col-5 col-md-4 mt-1 vol-page-tab-content-doc">
+                                    <img src="~/Images/pdf.png" alt=""
+                                         class="vol-page-tab-content-doc-info">lorem_ipsum.pdf
+                                </div>
+                                <div class="col-5 col-md-4 mt-1 vol-page-tab-content-doc">
+                                    <img src="~/Images/pdf.png" alt=""
+                                         class="vol-page-tab-content-doc-info">lorem_ipsum.pdf
+                                </div>
+                                <div class="col-5 col-md-4 mt-1 vol-page-tab-content-doc">
+                                    <img src="~/Images/pdf.png" alt=""
+                                         class="vol-page-tab-content-doc-info">lorem_ipsum.pdf
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab"
+                         tabindex="0">
+                        <div class="mt-2">
+                            @Model.OrganizationDetails
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab"
+                         tabindex="0">
+
+                        <div class="mt-3">
+                            <div>
+                                <div class="mb-3">
+                                    <textarea class="form-control" id="CommentText" rows="3"
+                                              placeholder="Enter Your Comments..."></textarea>
+                                </div>
+                                <button type="button" class="btn vol-page-tab-comments-btn" onclick="postCommentnew('@Model.MissionId', @userid)">Post Comment</button>
+                            </div>
+                        </div>
+
+                        <div id="commentSection">
+                            @foreach (var item in Model.Comments)
+                            {
+                                <div class="card my-2">
+                                    <div class="card-body d-flex">
+                                        <div>
+                                            <img class="vol-page-tab-comments-img" src="~/Images/volunteer1.png" alt="">
+                                        </div>
+                                        <div class="d-flex flex-column justify-content-around ms-3">
+                                            <div>
+                                                @foreach (var user in Model.AllUsers)
+                                                {
+                                                    @if (item.UserId == user.UserId)
+                                                    {
+
+                                                        <div>@user.FirstName</div>
+                                                    }
+
+                                                }
+                                                <div class="vol-page-tab-comment-time">
+                                                    @item.CreatedAt
+                                                </div>
+                                            </div>
+                                            <div class="mt-2">@item.CommetText</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="col-12 col-lg-4">
+                <div class="volunteering-sec-2-right-top mt-3">
+                    <div class="vol-sec-2-right-1st-header">
+                        Information
+                    </div>
+                    <hr>
+                    <div class="vol-sec-2-right-1st-sub d-flex">
+                        <div> Skills</div> <div class="vol-sec-2-right-1st-sub-sec">
+                            Cool, Easy
+                            Going, Math, Computer
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="vol-sec-2-right-1st-sub d-flex">
+                        <div>Days</div> <div class="vol-sec-2-right-1st-sub-sec">
+                            Cool, Easy
+                            Going, Math, Computer
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="vol-sec-2-right-1st-sub d-flex">
+                        <div class="me-2">Ratings</div>
+                        @if (@Model.AverageRating != null)
+                        {
+                            int count = 0;
+
+                            @for (var i = 1; i <= @Model.AverageRating; i++)
+                            {
+                                <i class="bi bi-star-fill ms-1" id="@i" style="color:black;"></i>
+                                count++;
+                            }
+                            @for (var k = count + 1; k <= 5; k++)
+                            {
+                                <i class="bi bi-star ms-1" id="@k" style="color:black;"></i>
+                            }
+                        }
+                        else
+                        {
+                            <img src="~/Images/selected-star.png" class="information-star-img" />
+                            <img src="~/Images/selected-star.png" class="information-star-img ms-1" />
+                            <img src="~/Images/selected-star.png" class="information-star-img ms-1" />
+                            <img src="~/Images/selected-star.png" class="information-star-img ms-1" />
+                            <img src="~/Images/selected-star.png" class="information-star-img ms-1" />
+                        }
+                        <span> (By @Model.TotalRatedByUsers Volunteers)</span>
+                    </div>
+                </div>
+
+                <div class="volunteering-sec-2-right-down mt-3">
+                    <div class="vol-sec-2-right-2nd-header">Recent Volunteers</div>
+                    <hr>
+                    <div>
+                        <div class="row">
+                            @foreach (var item in ViewBag.recentvoldetails)
+                            {
+                                <div class="col mt-1 text-center">
+                                    <img class="vol-page-right-recent-vol-img" src="~/Images/volunteer1.png" alt="">
+                                    <div class="vol-page-right-2nd-vol-name">@item.FirstName</div>
+                                </div>
+                            }
+                        </div>
+                        <hr>
+                        <div class="row text-center">
+                            <div class="col-2"><button class="btn"><img src="~/Images/left.png" alt=""></button></div>
+                            <div class="col-8">Recent Volunteers</div>
+                            <div class="col-2">
+                                <button class="btn"><img src="~/Images/right-arrow1.png" alt=""></button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+    @*}*@
+    <partial name="_RelatedMissionPartial" />
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        //        function postComment(MI, UI) {
+        //    var commentTxt = document.getElementById("CommentText").value;
+        //    alert(UI);
+
+        //    $.ajax({
+        //        url: '/User/AddComment',
+        //        type: 'POST',
+        //        data: { MissionId: MI, UserId: UI, CommentText: commentTxt },
+        //        success: function (result) { }
+        //             alert("added");
+        //    });
+
+        //}
+        function postCommentnew(MI, UI) {
+            var commentTxt = document.getElementById("CommentText").value;
+
+            $.ajax({
+                url: '/User/AddComment',
+                type: 'POST',
+                dataType: "html",
+                data: { MissionId: MI, UserId: UI, CommentText: commentTxt },
+                success: function (data) {
+                    alert("added");
+
+                    $("#commentSection").html("");
+
+                    $("#commentSection").html(data);
+
+                }
+            });
+            document.getElementById("CommentText").value = "";
+        }
+        function recomand(Email, MI) {
+
+            //alert(MI);
+            $.ajax({
+                url: '/User/RecomandUser',
+                type: 'POST',
+                data: { EmailId: Email, MissionId: MI },
+
+                success: function (result) {
+
+                    alert("send");
+                },
+                error: function () {
+                    alert("could not send Email");
+                }
+
+            });
+        }
+
+
+        function addRating(starId, missionId, Id) {
+            $.ajax({
+                url: "/Home/Addrating",
+                type: "POST",
+                data: { missionId: missionId, Id: Id, rating: starId },
+                success: function (result) {
+                    if (parseInt(result.ratingExists.rating, 10)) {
+                        for (i = 1; i <= parseInt(result.ratingExists.rating, 10); i++) {
+                            var starbtn = document.getElementById(String(i));
+                            starbtn.classList.remove("bi-star");
+                            starbtn.classList.add("bi-star-fill");
+                            starbtn.style.color = "none";
+                        }
+                        for (i = parseInt(result.ratingExists.rating, 10) + 1; i <= 5; i++) {
+                            var starbtn = document.getElementById(String(i));
+                            starbtn.classList.remove("bi-star-fill");
+                            starbtn.classList.add("bi-star");
+                            starbtn.style.color = "none";
+                        }
+                    } else {
+                        for (i = 1; i <= parseInt(result.newRating.rating, 10); i++) {
+                            var starbtn = document.getElementById(String(i));
+                            starbtn.classList.remove("bi-star");
+                            starbtn.classList.add("bi-star-fill");
+                            starbtn.style.color = "none";
+                        }
+                        for (i = parseInt(result.ratingExists.rating, 10) + 1; i <= 5; i++) {
+                            var starbtn = document.getElementById(String(i));
+                            //starbtn.style.color = "white";
+
+                            starbtn.classList.remove("bi-star-fill");
+                            starbtn.classList.add("bi-star");
+                            starbtn.style.color = "none";
+                        }
+                    }
+                },
+                error: function () {
+                    alert("could not like mission");
+                },
+            });
+        }
+
+
+
+
+        function addToFav(missionId, userId) {
+
+            $.ajax({
+                url: '/Home/AddToFav',
+                type: 'POST',
+                data: { MissionId: missionId, UserId: userId },
+                success: function (result) {
+
+                    if (result.favoriteMissionadd) {
+                        location.reload();
+                        var afterapplybtn = document.getElementById("afterApply");
+                        var beforeapplybtn = document.getElementById("beforeApply");
+                        console.log(afterapplybtn);
+                        afterapplybtn.classList.remove('d-none');
+                        beforeapplybtn.classList.add('d-none');
+
+
+                    }
+                    else if (result.favoriteMissiondel) {
+                        location.reload();
+                        var afterapplybtn = document.getElementById("afterApply");
+                        var beforeapplybtn = document.getElementById("beforeApply");
+                        beforeapplybtn.classList.remove('d-none');
+                        afterapplybtn.classList.add('d-none');
+
+
+                    }
+                }
+            });
+        }
+
+
+
+    </script>
+</body>
+
+</html>

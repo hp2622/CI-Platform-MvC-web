@@ -1,0 +1,252 @@
+﻿@using CI_Platform.Models
+@model MissionLandingPageViewModel
+
+
+
+
+<div class="d-flex">
+
+
+    <div class="dropdown ms-3 mt-2 pe-3 ps-2 d-inline-block">
+        <button class="btn text-reset me-0 sortBy-dropdown dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Sort By
+            <i class="bi bi-chevron-down"></i>
+        </button>
+        <ul class="dropdown-menu">
+            @if (ViewBag.currentUrl.Contains('?'))
+            {
+                <li><a class="dropdown-item" href="@ViewBag.currentUrl&sortOrder=newest">Newest</a></li>
+                <li><a class="dropdown-item" href="@ViewBag.currentUrl&sortOrder=oldest">Oldest</a></li>
+                <li><a class="dropdown-item" href="@ViewBag.currentUrl&sortOrder=lowest">Lowest available seats </a></li>
+                <li><a class="dropdown-item" href="@ViewBag.currentUrl&sortOrder=highest">Highest available seats </a></li>
+                <li><a class="dropdown-item" href="@ViewBag.currentUrl&sortOrder=favourites">My favourites </a></li>
+                <li><a class="dropdown-item" href="@ViewBag.currentUrl&sortOrder=deadline">Registration deadline</a></li>
+            }
+            else
+            {
+                <li><a class="dropdown-item" href="@ViewBag.currentUrl/?sortOrder=newest">Newest</a></li>
+                <li><a class="dropdown-item" href="@ViewBag.currentUrl/?sortOrder=oldest">Oldest</a></li>
+                <li><a class="dropdown-item" href="@ViewBag.currentUrl/?sortOrder=lowest">Lowest available seats </a></li>
+                <li><a class="dropdown-item" href="@ViewBag.currentUrl/?sortOrder=highest">Highest available seats </a></li>
+                <li><a class="dropdown-item" href="@ViewBag.currentUrl/?sortOrder=favourites">My favourites </a></li>
+                <li><a class="dropdown-item" href="@ViewBag.currentUrl/?sortOrder=deadline">Registration deadline</a></li>
+
+            }
+
+        </ul>
+    </div>
+    <div class="btn-group d-flex">
+
+        <button class="btn" id="grid" onclick="gridview()">
+            <img src="~/images/grid.png" alt="">
+        </button>
+        <button class="btn" id="list" onclick="listview()">
+            <img src="~/images/list.png" alt="">
+        </button>
+    </div>
+</div>
+
+
+<div id="products" class="row container view-group">
+
+
+    @foreach (var item in Model.Missions)
+    {
+        <div class="item col-xs-4 col-lg-4 col-md-6 mt-5">
+            <div class="thumbnail card w-100 h-100">
+                <div class="img-event h-100">
+                    <img class="group list-group-image img-fluid h-100" style="width:100%;"
+                     src="~/images/Grow-Trees-On-the-path-to-environment-sustainability.png" alt="" />
+                    <div class="landing-page-top-right city"><img src="~/images/pin.png" alt=""> @item.City</div>
+                    @*<div class="country" hidden><img src="~/images/pin.png" alt=""> @item.Country</div>*@
+                    <div class="landing-page-bottom-right d-flex flex-column">
+
+                        @{
+                            long useridfavmission = (long)Context.Session.GetInt32("userIDforfavmission");
+                        }
+                        @*@if (item.MissionId == Model.FavoriteMissions && item.addedtofavU == useridfavmission)
+                        {
+                            <button class="mb-2 landing-page-btn-img afterApply" id="@item.MissionId" onclick="addToFav(@item.MissionId, @userforfavmission)">
+                                <img src="~/images/heart red.png" height="25px" width="25px" alt="">
+                            </button>
+                        }
+                        else
+                        {
+
+
+                            <button class="mb-2 landing-page-btn-img beforeApply" id="@item.MissionId" onclick="addToFav(@item.MissionId, @userforfavmission)">
+                                <img src="~/images/heart.png" alt="">
+                            </button>
+
+                        }*@
+
+
+
+                        @* <button class="landing-page-btn-img">
+                            <img src="~/images/user.png"
+                            alt="">
+
+                            </button>*@
+
+
+                        <div class="landing-page-btn-img">
+                            <a class="text-reset singledropdown me-1" id="navbarDropdownMenuLink"
+                           role="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <img src="~/images/user.png"
+                                 alt="">
+                            </a>
+                            @*<button type="button" class="text-reset singledropdown me-1" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <img src="~/images/user.png"
+                                alt="">
+                                </button>*@
+
+                            <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Recomand to </h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body" style=" width: 96%; max-height: 300px; overflow-y: scroll; overflow-x: hidden;">
+                                            @foreach (var user in @ViewBag.AllUsers)
+                                            {
+                                                <button class="dropdown-item recomandtouser ms-3 d-flex" value="@user.Email" name="@user.FirstName" onclick="recomand('@user.Email',@item.MissionId)" id="recomandUser" style="border-bottom:1px solid #cfcfcf;">
+                                                    <div>
+                                                        <img src="~/Images/profile.png" class="mt-1 mb-1" height="35px" width="35px" />
+                                                    </div>
+                                                    <div class="ms-2 mt-2">
+
+                                                        @user.FirstName @user.LastName
+                                                    </div>
+                                                    <div class="btn btn-primary mt-1" style="right: 7;position: absolute;">
+                                                        Recomand
+                                                    </div>
+
+                                                </button>
+
+                                            }
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*<ul class="dropdown-menu dropdown-menu-start" aria-labelledby="navbarDropdownMenuLink" style="max-height:150px; overflow-y:scroll">
+
+                                @foreach(var user in @ViewBag.AllUsers){
+                                <li class="dropdown-checkbox checkbox recomandtouser ms-3" value="@user.Email" name="@user.FirstName" onclick="recomandUser()" id="recomandUser" style="border-bottom:1px solid grey;">
+                                @user.FirstName @user.LastName <br /> @user.Email
+
+                                </li>
+
+                                }
+
+
+
+                                </ul>*@
+                        </div>
+                    </div>
+
+                    <div class="landing-page-bottom-center theme">@item.Theme</div>
+                </div>
+                <div class="caption card-body">
+                    <h4 class="group card-title inner list-group-item-heading">
+                        @item.Title
+                    </h4>
+                    <p class="group inner landing-page-list-group-item-text">
+                        @item.Description
+                    </p>
+                    <div class="d-flex justify-content-between mb-2 landing-page-card-rating">
+                        <div>@item.OrganizationName</div>
+                        <div>
+                            <img src="~/images/selected-star.png" alt="">
+                            <img src="~/images/selected-star.png" alt="">
+                            <img src="~/images/selected-star.png" alt="">
+                            <img src="~/images/star.png" alt="">
+                            <img src="~/images/star.png" alt="">
+                        </div>
+                    </div>
+                    @if (item.MissionType == "1")
+                    {
+                        <div class="rule d-flex mt-1">
+                            <hr>
+                            @*<button class="date-btn mt-1">@item.StartDateEndDate</button>*@
+
+                            @*<button class="date-btn mt-1">@Model.GoalMission</button>*@
+
+                            <hr>
+                        </div>
+                        <div class="row landing-page-box-border">
+
+                            <div class="col-6 col-md-6 d-flex align-items-center">
+                                <p class="lead me-2 pt-2">
+                                    <img src="~/images/Seats-left.png" alt="">
+                                    <div>
+                                        <div>10</div>
+                                        <div class="landing-page-card-vol-small">Seats Left</div>
+                                    </div>
+                                </p>
+                            </div>
+                            <div class="col-6 col-md-6 d-flex align-items-center">
+                                <p class="lead me-2 pt-2">
+                                    <img src="~/images/achieved.png" alt="">
+                                    <div style="width: 100%;">
+                                        <div>
+
+                                            <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25"
+                                         aria-valuemin="0" aria-valuemax="100" style="height: 10px;">
+                                                <div class="progress-bar bg-success" style="width: 80%;"></div>
+                                            </div>
+
+                                        </div>
+                                        <div class="landing-page-card-vol-small">8000 achived</div>
+                                    </div>
+                                </p>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="rule d-flex mt-1">
+                            <hr>
+                            <button class="date-btn mt-1">from @item.StartDate?.ToString("dd-MM-yyyy") to @item.EndDate?.ToString("dd-MM-yyyy")</button>
+                            <hr>
+                        </div>
+                        <div class="row landing-page-box-border">
+                            <div class="col-6 col-md-6 d-flex align-items-center">
+                                <p class="lead me-2 pt-2">
+                                    <img src="~/images/Seats-left.png" alt="">
+                                    <div>
+                                        <div>10</div>
+                                        <div class="landing-page-card-vol-small">Seats Left</div>
+                                    </div>
+                                </p>
+                            </div>
+                            <div class="col-6 col-md-6 d-flex align-items-center">
+                                <p class="lead me-2 pt-2">
+                                    <img src="~/images/deadline.png" alt="">
+                                    <div>
+                                        <div>09/01/2023</div>
+                                        <div class="landing-page-card-vol-small">Deadline</div>
+                                    </div>
+                                </p>
+                            </div>
+                        </div>
+                    }
+
+                    <div id="missionid" value="@item.MissionId" hidden> @item.MissionId</div>
+                    <div class="d-flex justify-content-center">
+                        <div class="">
+                            <a class="btn mt-2 landing-page-apply-mission-btn" href="/Home/SingleMission?MissionId=@item.MissionId">
+                                Apply <img src="~/images/right-arrow.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

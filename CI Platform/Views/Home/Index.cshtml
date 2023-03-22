@@ -1,0 +1,948 @@
+﻿@{
+    Layout = "_Navbar";
+    ViewData["Title"] = "Home Page";
+}
+<!DOCTYPE html>
+<html>
+  <head>
+   @* <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css"
+      rel="stylesheet"
+    />*@
+    @*<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">*@
+    
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link href="~/css/missionlist.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div class="container exploretxt d-flex justify-content-spacebetween mt-5 ps-4">
+      Explore <b>72 Missions</b>
+      @*<div class="dropdown pe-3 ps-2 sortbydrop">
+        <a
+          class="text-reset me-5 singledropdown dropdown-toggle"
+          href="#"
+          id="navbarDropdownMenuLink"
+          role="button"
+          data-mdb-toggle="dropdown"
+          aria-expanded="false"
+          style="text-decoration: none; font-size: 18px;"
+        >
+          Sort By
+        </a>
+        <ul
+          class="dropdown-menu dropdown-menu-side"
+          aria-labelledby="navbarDropdownMenuLink"
+        >
+          <li><a class="dropdown-item" href="#">City</a></li>
+          <li><a class="dropdown-item" href="#">Country</a></li>
+          <li>
+            <a class="dropdown-item" href="#">Theme</a>
+          </li>
+        </ul>
+      </div>*@
+      <div id="btnContainer">
+        
+        <button class="btn" onclick="listView()">
+          <i class="fa fa-bars"></i>
+        </button>
+        <button class="btn" onclick="gridView()">
+          <i class="fa fa-th-large"></i>
+        </button>
+      </div>
+      <!-- <button class="btn btn-primary btn-grid">Grid View</button>
+      <button class="btn btn-danger btn-list">List View</button> -->
+    </div>
+    <div class="container justify-content-center">
+      <div class="row d-flex p-0 m-0 g-4">
+        <div class="col col-md-6 col-lg-4">
+          <div class="card h-100">
+            <img
+              src="https://mdbcdn.b-cdn.net/img/new/standard/city/044.webp"
+              class="card-img-top"
+              alt="Skyscrapers"
+            />
+            <!-- <div class="onimgrightsec">
+                <div class="d-flex location">
+
+                    <img src="images/pin.png" class="p-2">
+                    <label class="pt-1">
+                        India
+                    </label>
+                </div>
+                <img src="images/heart.png" class="p-2 addtofvrt">
+                <div class="backsqure">
+
+                    <div class="square">
+                    </div>
+                </div>
+            </div> -->
+
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">
+                This is a wider card with supporting text below as a natural
+                lead-in to additional content. This content is a little bit
+                longer.
+              </p>
+              <!-- <label class="notify-badge">NEW</label> -->
+
+              <div class="d-flex mb-2 orgrating container-fluid">
+                <div class="organizationname float-start">Tree Canada</div>
+                <div class="ratings justify-content-right">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span>
+                </div>
+              </div>
+              <hr class="mt-3 hr" />
+              <div class="missioninterval">
+                From 01/01/2021 until 01/01/2022
+              </div>
+              <div class="container seatsnddeadline d-flex">
+                <div class="seatsleftsection d-flex">
+                  <img
+                    src="images/Seats-left.png"
+                    class="mt-2"
+                    height="20px"
+                    width="20px"
+                  />
+                  <div class="iconandseats ms-2 d-flex">
+                    <label class="numberofseats"> 10 </label>
+                    <label class="seatslefttxt"> Seats Left </label>
+                  </div>
+                </div>
+
+                <div class="deadline d-flex">
+                  <img
+                    src="images/deadline.png"
+                    class="mt-2"
+                    height="20px"
+                    width="20px"
+                  />
+                  <div class="iconandseats ms-2 d-flex">
+                    <label class="numberofseats"> 09/01/2019 </label>
+                    <label class="seatslefttxt"> Deadline </label>
+                  </div>
+                </div>
+              </div>
+              <hr class="hr" />
+              <div class="applybtn mt-2">
+                <button class="btn-apply">
+                  Apply <img src="images/right-arrow.png" class=""/>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col col-md-6 col-lg-4">
+          <div class="card h-100">
+            <img
+              src="https://mdbcdn.b-cdn.net/img/new/standard/city/044.webp"
+              class="card-img-top"
+              alt="Skyscrapers"
+            />
+
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">
+                This is a wider card with supporting text below as a natural
+                lead-in to additional content. This content is a little bit
+                longer.
+              </p>
+              <!-- <label class="notify-badge">NEW</label> -->
+
+              <div class="d-flex mb-2 orgrating container-fluid">
+                <div class="organizationname float-start">Tree Canada</div>
+                <div class="ratings justify-content-right">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span>
+                </div>
+              </div>
+              <hr class="mt-3 hr" />
+              <div class="missioninterval">
+                From 01/01/2021 until 01/01/2022
+              </div>
+              <div class="container seatsnddeadline d-flex">
+                <div class="seatsleftsection d-flex">
+                  <img
+                    src="images//Already-volunteered.png"
+                    class="mt-2"
+                    height="20px"
+                    width="20px"
+                  />
+                  <div class="iconandseats ms-2 d-flex">
+                    <label class="numberofseats"> 250 </label>
+                    <label class="seatslefttxt"> Alredy Volunteered </label>
+                  </div>
+                </div>
+
+                <div class="deadline d-flex">
+                  <img
+                    src="images/deadline.png"
+                    class="mt-2"
+                    height="20px"
+                    width="20px"
+                  />
+                  <div class="iconandseats ms-2 d-flex">
+                    <label class="numberofseats"> 09/01/2019 </label>
+                    <label class="seatslefttxt"> Deadline </label>
+                  </div>
+                </div>
+              </div>
+              <hr class="hr" />
+              <div class="applybtn mt-2">
+                <button class="btn-apply">
+                  Apply <img src="images/right-arrow.png" class="" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col col-md-6 col-lg-4">
+          <div class="card h-100">
+            <img
+              src="https://mdbcdn.b-cdn.net/img/new/standard/city/044.webp"
+              class="card-img-top"
+              alt="Skyscrapers"
+            />
+
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">
+                This is a wider card with supporting text below as a natural
+                lead-in to additional content. This content is a little bit
+                longer.
+              </p>
+              <!-- <label class="notify-badge">NEW</label> -->
+
+              <div class="d-flex mb-2 orgrating container-fluid">
+                <div class="organizationname float-start">Tree Canada</div>
+                <div class="ratings justify-content-right">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span>
+                </div>
+              </div>
+              <hr class="mt-3 hr" />
+              <div class="missioninterval">
+                From 01/01/2021 until 01/01/2022
+              </div>
+              <div class="container seatsnddeadline d-flex">
+                <div class="seatsleftsection d-flex">
+                  <img
+                    src="images/Seats-left.png"
+                    class="mt-2"
+                    height="20px"
+                    width="20px"
+                  />
+                  <div class="iconandseats ms-2 d-flex">
+                    <label class="numberofseats"> 10 </label>
+                    <label class="seatslefttxt"> Seats Left </label>
+                  </div>
+                </div>
+
+                <div class="deadline d-flex">
+                  <img
+                    src="images/deadline.png"
+                    class="mt-2"
+                    height="20px"
+                    width="20px"
+                  />
+                  <div class="iconandseats ms-2 d-flex">
+                    <label class="numberofseats"> 09/01/2019 </label>
+                    <label class="seatslefttxt"> Deadline </label>
+                  </div>
+                </div>
+              </div>
+              <hr class="hr" />
+              <div class="applybtn mt-2">
+                <button class="btn-apply">
+                  Apply <img src="images/right-arrow.png" class="" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col col-md-6 col-lg-4">
+          <div class="card h-100">
+            <img
+              src="https://mdbcdn.b-cdn.net/img/new/standard/city/044.webp"
+              class="card-img-top"
+              alt="Skyscrapers"
+            />
+
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">
+                This is a wider card with supporting text below as a natural
+                lead-in to additional content. This content is a little bit
+                longer.
+              </p>
+              <!-- <label class="notify-badge">NEW</label> -->
+
+              <div class="d-flex mb-2 orgrating container-fluid">
+                <div class="organizationname float-start">Tree Canada</div>
+                <div class="ratings justify-content-right">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span>
+                </div>
+              </div>
+              <hr class="mt-3 hr" />
+              <div class="missioninterval">Plant 10,000 Trees</div>
+              <div class="container seatsnddeadline d-flex">
+                <div class="seatsleftsection d-flex">
+                  <img
+                    src="images/Seats-left.png"
+                    class="mt-2"
+                    height="20px"
+                    width="20px"
+                  />
+                  <div class="iconandseats ms-2 d-flex">
+                    <label class="numberofseats"> 10 </label>
+                    <label class="seatslefttxt"> Seats Left </label>
+                  </div>
+                </div>
+
+                <div class="deadline d-flex">
+                  <img
+                    src="images/achieved.png"
+                    class="mt-2"
+                    height="20px"
+                    width="20px"
+                  />
+                  <div class="iconandseats ms-2 d-flex">
+                    <div class="progress">
+                      <div
+                        class="progress-bar bg-success"
+                        role="progressbar"
+                        aria-label="Success example"
+                        style="width: 55%"
+                        aria-valuenow="25"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                      ></div>
+                    </div>
+                    <label class="seatslefttxt"> 8000 Achived </label>
+                  </div>
+                </div>
+              </div>
+              <hr class="hr" />
+              <div class="applybtn mt-2">
+                <button class="btn-apply">
+                  Apply <img src="images/right-arrow.png" class="" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col col-md-6 col-lg-4">
+          <div class="card h-100">
+            <img
+              src="https://mdbcdn.b-cdn.net/img/new/standard/city/044.webp"
+              class="card-img-top"
+              alt="Skyscrapers"
+            />
+
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">
+                This is a wider card with supporting text below as a natural
+                lead-in to additional content. This content is a little bit
+                longer.
+              </p>
+              <!-- <label class="notify-badge">NEW</label> -->
+
+              <div class="d-flex mb-2 orgrating container-fluid">
+                <div class="organizationname float-start">Tree Canada</div>
+                <div class="ratings justify-content-right">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span>
+                </div>
+              </div>
+              <hr class="mt-3 hr" />
+              <div class="missioninterval">Plant 10,000 Trees</div>
+              <div class="container seatsnddeadline d-flex">
+                <!-- <div class="seatsleftsection d-flex">
+                    <img
+                      src="images/Seats-left.png"
+                      class="mt-2"
+                      height="20px"
+                      width="20px"
+                    />
+                    <div class="iconandseats ms-2 d-flex">
+                      <label class="numberofseats"> 10 </label>
+                      <label class="seatslefttxt"> Seats Left </label>
+                    </div>
+                  </div> -->
+
+                <div class="deadline d-flex">
+                  <img
+                    src="images/achieved.png"
+                    class="mt-2"
+                    height="20px"
+                    width="20px"
+                  />
+                  <div class="iconandseats ms-2 d-flex">
+                    <div class="iconandseats ms-2 d-flex">
+                      <div class="progress">
+                        <div
+                          class="progress-bar bg-success"
+                          role="progressbar"
+                          aria-label="Success example"
+                          style="width: 75%"
+                          aria-valuenow="75"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                        ></div>
+                      </div>
+                      <label class="seatslefttxt"> 10000 Achived </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <hr class="hr" />
+              <div class="applybtn mt-2">
+                <button class="btn-apply">
+                  Apply <img src="images/right-arrow.png" class="" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col col-md-6 col-lg-4">
+          <div class="card h-100">
+            <img
+              src="https://mdbcdn.b-cdn.net/img/new/standard/city/044.webp"
+              class="card-img-top"
+              alt="Skyscrapers"
+            />
+
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">
+                This is a wider card with supporting text below as a natural
+                lead-in to additional content. This content is a little bit
+                longer.
+              </p>
+              <!-- <label class="notify-badge">NEW</label> -->
+
+              <div class="d-flex mb-2 orgrating container-fluid">
+                <div class="organizationname float-start">Tree Canada</div>
+                <div class="ratings justify-content-right">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span>
+                </div>
+              </div>
+              <hr class="mt-3 hr" />
+              <div class="missioninterval">
+                From 01/01/2021 until 01/01/2022
+              </div>
+              <div class="container seatsnddeadline d-flex">
+                <div class="seatsleftsection d-flex">
+                  <img
+                    src="images/Seats-left.png"
+                    class="mt-2"
+                    height="20px"
+                    width="20px"
+                  />
+                  <div class="iconandseats ms-2 d-flex">
+                    <label class="numberofseats"> 10 </label>
+                    <label class="seatslefttxt"> Seats Left </label>
+                  </div>
+                </div>
+
+                <div class="deadline d-flex">
+                  <img
+                    src="images/deadline.png"
+                    class="mt-2"
+                    height="20px"
+                    width="20px"
+                  />
+                  <div class="iconandseats ms-2 d-flex">
+                    <label class="numberofseats"> 09/01/2019 </label>
+                    <label class="seatslefttxt"> Deadline </label>
+                  </div>
+                </div>
+              </div>
+              <hr class="hr" />
+              <div class="applybtn mt-2">
+                <button class="btn-apply">
+                  Apply <img src="images/right-arrow.png" class="" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col col-md-6 col-lg-4">
+          <div class="card h-100">
+            <img
+              src="https://mdbcdn.b-cdn.net/img/new/standard/city/044.webp"
+              class="card-img-top"
+              alt="Skyscrapers"
+            />
+
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">
+                This is a wider card with supporting text below as a natural
+                lead-in to additional content. This content is a little bit
+                longer.
+              </p>
+              <!-- <label class="notify-badge">NEW</label> -->
+
+              <div class="d-flex mb-2 orgrating container-fluid">
+                <div class="organizationname float-start">Tree Canada</div>
+                <div class="ratings justify-content-right">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span>
+                </div>
+              </div>
+              <hr class="mt-3 hr" />
+              <div class="missioninterval">
+                From 01/01/2021 until 01/01/2022
+              </div>
+              <div class="container seatsnddeadline d-flex">
+                <div class="seatsleftsection d-flex">
+                  <img
+                    src="images/Seats-left.png"
+                    class="mt-2"
+                    height="20px"
+                    width="20px"
+                  />
+                  <div class="iconandseats ms-2 d-flex">
+                    <label class="numberofseats"> 10 </label>
+                    <label class="seatslefttxt"> Seats Left </label>
+                  </div>
+                </div>
+
+                <div class="deadline d-flex">
+                  <img
+                    src="images/deadline.png"
+                    class="mt-2"
+                    height="20px"
+                    width="20px"
+                  />
+                  <div class="iconandseats ms-2 d-flex">
+                    <label class="numberofseats"> 09/01/2019 </label>
+                    <label class="seatslefttxt"> Deadline </label>
+                  </div>
+                </div>
+              </div>
+              <hr class="hr" />
+              <div class="applybtn mt-2">
+                <button class="btn-apply">
+                  Apply <img src="images/right-arrow.png" class="" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col col-md-6 col-lg-4">
+          <div class="card h-100">
+            <img
+              src="https://mdbcdn.b-cdn.net/img/new/standard/city/044.webp"
+              class="card-img-top"
+              alt="Skyscrapers"
+            />
+
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">
+                This is a wider card with supporting text below as a natural
+                lead-in to additional content. This content is a little bit
+                longer.
+              </p>
+              <!-- <label class="notify-badge">NEW</label> -->
+
+              <div class="d-flex mb-2 orgrating container-fluid">
+                <div class="organizationname float-start">Tree Canada</div>
+                <div class="ratings justify-content-right">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span>
+                </div>
+              </div>
+              <hr class="mt-3 hr" />
+              <div class="missioninterval">
+                From 01/01/2021 until 01/01/2022
+              </div>
+              <div class="container seatsnddeadline d-flex">
+                <div class="seatsleftsection d-flex">
+                  <img
+                    src="images/Seats-left.png"
+                    class="mt-2"
+                    height="20px"
+                    width="20px"
+                  />
+                  <div class="iconandseats ms-2 d-flex">
+                    <label class="numberofseats"> 10 </label>
+                    <label class="seatslefttxt"> Seats Left </label>
+                  </div>
+                </div>
+
+                <div class="deadline d-flex">
+                  <img
+                    src="images/deadline.png"
+                    class="mt-2"
+                    height="20px"
+                    width="20px"
+                  />
+                  <div class="iconandseats ms-2 d-flex">
+                    <label class="numberofseats"> 09/01/2019 </label>
+                    <label class="seatslefttxt"> Deadline </label>
+                  </div>
+                </div>
+              </div>
+              <hr class="hr" />
+              <div class="applybtn mt-2">
+                <button class="btn-apply">
+                  Apply <img src="images/right-arrow.png" class="" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col col-md-6 col-lg-4">
+          <div class="card h-100">
+            <img
+              src="https://mdbcdn.b-cdn.net/img/new/standard/city/044.webp"
+              class="card-img-top"
+              alt="Skyscrapers"
+            />
+
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">
+                This is a wider card with supporting text below as a natural
+                lead-in to additional content. This content is a little bit
+                longer.
+              </p>
+              <!-- <label class="notify-badge">NEW</label> -->
+
+              <div class="d-flex mb-2 orgrating container-fluid">
+                <div class="organizationname float-start">Tree Canada</div>
+                <div class="ratings justify-content-right">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span>
+                </div>
+              </div>
+              <hr class="mt-3 hr" />
+              <div class="missioninterval">
+                From 01/01/2021 until 01/01/2022
+              </div>
+              <div class="container seatsnddeadline d-flex">
+                <div class="seatsleftsection d-flex">
+                  <img
+                    src="images/Seats-left.png"
+                    class="mt-2"
+                    height="20px"
+                    width="20px"
+                  />
+                  <div class="iconandseats ms-2 d-flex">
+                    <label class="numberofseats"> 10 </label>
+                    <label class="seatslefttxt"> Seats Left </label>
+                  </div>
+                </div>
+
+                <div class="deadline d-flex">
+                  <img
+                    src="images/deadline.png"
+                    class="mt-2"
+                    height="20px"
+                    width="20px"
+                  />
+                  <div class="iconandseats ms-2 d-flex">
+                    <label class="numberofseats"> 09/01/2019 </label>
+                    <label class="seatslefttxt"> Deadline </label>
+                  </div>
+                </div>
+              </div>
+              <hr class="hr" />
+              <div class="applybtn mt-2">
+                <button class="btn-apply">
+                  Apply <img src="images/right-arrow.png" class="" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col col-md-6 col-lg-4">
+          <div class="card h-100">
+            <img
+              src="https://mdbcdn.b-cdn.net/img/new/standard/city/044.webp"
+              class="card-img-top"
+              alt="Skyscrapers"
+            />
+
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">
+                This is a wider card with supporting text below as a natural
+                lead-in to additional content. This content is a little bit
+                longer.
+              </p>
+              <!-- <label class="notify-badge">NEW</label> -->
+
+              <div class="d-flex mb-2 orgrating container-fluid">
+                <div class="organizationname float-start">Tree Canada</div>
+                <div class="ratings justify-content-right">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span>
+                </div>
+              </div>
+              <hr class="mt-3 hr" />
+              <div class="missioninterval">
+                From 01/01/2021 until 01/01/2022
+              </div>
+              <div class="container seatsnddeadline d-flex">
+                <div class="seatsleftsection d-flex">
+                  <img
+                    src="images/Seats-left.png"
+                    class="mt-2"
+                    height="20px"
+                    width="20px"
+                  />
+                  <div class="iconandseats ms-2 d-flex">
+                    <label class="numberofseats"> 10 </label>
+                    <label class="seatslefttxt"> Seats Left </label>
+                  </div>
+                </div>
+
+                <div class="deadline d-flex">
+                  <img
+                    src="images/deadline.png"
+                    class="mt-2"
+                    height="20px"
+                    width="20px"
+                  />
+                  <div class="iconandseats ms-2 d-flex">
+                    <label class="numberofseats"> 09/01/2019 </label>
+                    <label class="seatslefttxt"> Deadline </label>
+                  </div>
+                </div>
+              </div>
+              <hr class="hr" />
+              <div class="applybtn mt-2">
+                <button class="btn-apply">
+                  Apply <img src="images/right-arrow.png" class="" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col col-md-6 col-lg-4">
+          <div class="card h-100">
+            <img
+              src="https://mdbcdn.b-cdn.net/img/new/standard/city/044.webp"
+              class="card-img-top"
+              alt="Skyscrapers"
+            />
+
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">
+                This is a wider card with supporting text below as a natural
+                lead-in to additional content. This content is a little bit
+                longer.
+              </p>
+              <!-- <label class="notify-badge">NEW</label> -->
+
+              <div class="d-flex mb-2 orgrating container-fluid">
+                <div class="organizationname float-start">Tree Canada</div>
+                <div class="ratings justify-content-right">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span>
+                </div>
+              </div>
+              <hr class="mt-3 hr" />
+              <div class="missioninterval">
+                From 01/01/2021 until 01/01/2022
+              </div>
+              <div class="container seatsnddeadline d-flex">
+                <div class="seatsleftsection d-flex">
+                  <img
+                    src="images/Seats-left.png"
+                    class="mt-2"
+                    height="20px"
+                    width="20px"
+                  />
+                  <div class="iconandseats ms-2 d-flex">
+                    <label class="numberofseats"> 10 </label>
+                    <label class="seatslefttxt"> Seats Left </label>
+                  </div>
+                </div>
+
+                <div class="deadline d-flex">
+                  <img
+                    src="images/deadline.png"
+                    class="mt-2"
+                    height="20px"
+                    width="20px"
+                  />
+                  <div class="iconandseats ms-2 d-flex">
+                    <label class="numberofseats"> 09/01/2019 </label>
+                    <label class="seatslefttxt"> Deadline </label>
+                  </div>
+                </div>
+              </div>
+              <hr class="hr" />
+              <div class="applybtn mt-2">
+                <button class="btn-apply">
+                  Apply <img src="images/right-arrow.png" class="" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <nav
+      aria-label="Page navigation example"
+      class="justify-content-center d-flex mt-5"
+    >
+      <ul class="pagination">
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">4</a></li>
+        <li class="page-item"><a class="page-link" href="#">5</a></li>
+        <li class="page-item"><a class="page-link" href="#">6</a></li>
+        <li class="page-item"><a class="page-link" href="#">7</a></li>
+        <li class="page-item"><a class="page-link" href="#">8</a></li>
+        <li class="page-item"><a class="page-link" href="#">9</a></li>
+        <li class="page-item"><a class="page-link" href="#">10</a></li>
+        <li class="page-item"><a class="page-link" href="#">11</a></li>
+        <li class="page-item"><a class="page-link" href="#">12</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div class="privacy container-fluid mb-3">
+      <hr />
+      Privacy Policy
+    </div>
+
+    <script>
+      // Get the elements with class="column"
+      var elements = document.getElementsByClassName("col");
+      var imgs = document.getElementsByClassName("card-img-top");
+      var card = document.getElementsByClassName("card");
+      var interval = document.getElementsByClassName("missioninterval");
+      var hr = document.getElementsByClassName("hr");
+      //var badge = document.getElementsByClassName("notify-badge");
+      //var smallscreen = document.getElementsByClassName("col-sm-12");
+      // Declare a loop variable
+      var i;
+
+      // List View
+      function listView() {
+        for (i = 0; i < elements.length + 1; i++) {
+          elements[i].style.width = "100%";
+          imgs[i].style.width = "30%";
+          card[i].style.display = "flex";
+          card[i].style.flexDirection = "inherit";
+          card[i].style.left = "0";
+          interval[i].style.width = "65%";
+          interval[i].style.left = "17%";
+          hr[i].style.backgroundColor = "transparent";
+          //   interval[i].style.top = "-21%";
+
+          //   badge[i].style.right = "82.5%";
+          //   badge[i].style.top = "87%";
+          //   badge[i].style.width = "14%";
+        }
+      }
+
+      // Grid View
+      function gridView() {
+        for (i = 0; i < elements.length; i++) {
+          if (screen.width > 576 && screen.width < 992) {
+            elements[i].style.width = "50%";
+            interval[i].style.top = "-8%";
+          } else if (screen.width < 576) {
+            elements[i].style.width = "100%";
+            interval[i].style.top = "-15%";
+          } else {
+            elements[i].style.width = "33%";
+          }
+          imgs[i].style.width = "100%";
+          card[i].style.flexDirection = "column";
+          hr[i].style.backgroundColor = "#c5c5c5";
+          //   interval[i].style.top = "-9%";
+
+          //   badge[i].style.right = "31%";
+          //   badge[i].style.top = "43%";
+
+          //   badge[i].style.width = "40%";
+        }
+      }
+
+      /* Optional: Add active class to the current button (highlight it) */
+      var container = document.getElementById("btnContainer");
+      var btns = container.getElementsByClassName("btn");
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function () {
+          var current = document.getElementsByClassName("active");
+          current[0].className = current[0].className.replace(" active", "");
+          this.className += " active";
+        });
+      }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script></script>
+    <script
+      type="text/javascript"
+      ;
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+    ></script>
+
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"
+    ></script>
+   <script type="text/javascript" src="~/js/popper.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+  </body>
+</html>

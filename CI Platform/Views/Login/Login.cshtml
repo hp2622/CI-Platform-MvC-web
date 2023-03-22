@@ -1,0 +1,64 @@
+﻿@model CI_Platform.Models.Login
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" text="text/css" />
+    <link rel="stylesheet" href="~/css/loginstyle.css" />
+    <script src="JavaScript\bootstrap.bundle.min.js"></script>
+    <title>LoginPage</title>
+</head>
+<body>
+            <div class="col-lg-4 col-md-12 col-sm-12">
+                <div class="card ms-5 me-4 border-0 centerLogin">
+                    <div class="card-body mt-5">
+                        <form asp-controller="Login" asp-action="Login" autocomplete="off">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="mb-5 text-danger" id="text-danger">
+                                @ViewBag.Error 
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="Email" class="form-label">Email address</label>
+                                <input asp-for="Email" type="email" class="form-control" id="exampleInputEmail1"
+                                       placeholder="name@gmail.com" aria-describedby="emailHelp" onkeyup="emailempty()">
+                                <span asp-validation-for="Email" id="emailerr"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="Password" class="form-label">Password</label>
+                                <input asp-for="Password" type="password" class="form-control" id="exampleInputPassword1"
+                                       placeholder="EnterPassword" onkeyup="passempty()">
+                                <span asp-validation-for="Password" id="passerr"></span>
+                            </div>
+                            <button type="submit" class="button mt-3">Login</button>
+                            @*<button type="button" class="button mt-3" onclick="location.href='@Url.Action("Resetpass", "Home")'">Reset my Password</button>*@
+                            <p class="d-flex justify-content-center mt-4">
+                                <a class="nav-link text-dark lostpasstxt" asp-area="" asp-controller="Home" asp-action="ForgetPass">Lost your Password?</a>
+                            </p>
+                            <p class="d-flex justify-content-center mt-4 createacc" >
+                                Don't have an account?
+                                <a class="nav-link text-dark registertxt" asp-area="" asp-controller="User" asp-action="Register">Create an account</a>
+                            </p>
+                        </form>
+                        <p class="d-flex justify-content-center mt-5 privacy">Privacy Policy</p>
+                    </div>
+                </div>
+            </div>
+            <script>
+                function emailempty(){
+                    document.getElementById("emailerr").style.display="none";
+                    document.getElementById("text-danger").style.display="none";
+                }
+                function passempty(){
+                    document.getElementById("passerr").style.display="none";
+                    document.getElementById("text-danger").style.display="none";
+                }
+            </script>
+</body>
+</html>

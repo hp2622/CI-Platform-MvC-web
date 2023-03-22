@@ -1,0 +1,53 @@
+﻿@model CI_Platform_Entity.Models.User
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="CSS\bootstrap.min.css" rel="stylesheet" text="text/css" />
+    <link rel="stylesheet" href="./css/loginstyle.css" />
+    <script src="JavaScript\bootstrap.bundle.min.js"></script>
+    <title>ForgotPassword</title>
+</head>
+<body>
+          <div class="col-lg-4 col-md-12 col-sm-12">
+            <div class="card ms-5 me-4 border-0 centerForgotPass">
+                <div class="card-body mt-5">
+                    <h4 class="d-flex justify-content-center mt-4">Forgot Password</h4>
+                    <p class="d-flex justify-content-center mt-3 createacc">
+                        Enter your email address you've using for your account below and we 
+                        will send you a password reset link</p>
+                    <form asp-controller="Home" asp-action="ForgetPass">
+                        <div class="mb-3">
+                          <label for="exampleInputEmail1" class="form-label mt-3">Email address</label>
+                          <input asp-for="Email" type="email" class="form-control" id="exampleInputEmail1" required
+                           placeholder="Enter your email address.." aria-describedby="emailHelp" onkeyup="emailexist()">
+                        </div>
+                        
+                        <div class="text-danger" id="text-danger">
+                            @ViewBag.emailnotexist
+                        </div>
+                        <button type="submit" class="button mt-3" >Reset my Password</button>
+                        @*<button type="button" class="button mt-3"><a class="nav-link text-dark p-0" asp-area="" asp-controller="Home" asp-action="Resetpass">Reset my Password</a></button>*@
+                       
+                         
+                        <p class="d-flex justify-content-center mt-4">
+                        <a class="nav-link text-dark lostpasstxt" asp-area="" asp-controller="Login" asp-action="Login">Login</a>                       
+                        </p> 
+                    </form>  
+                    <p class="d-flex justify-content-center mt-5 forgotprivacy">Privacy Policy</p>
+                </div>
+              </div>
+              
+            </div>
+            <script>
+
+            function emailexist(){
+                 
+            document.getElementById("text-danger").style.display="none";
+                        
+        }
+            </script>
+</body>
+</html>

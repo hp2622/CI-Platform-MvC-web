@@ -1,0 +1,92 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "";
+}
+<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+
+<partial name="_NavbarPartial" />
+<div class="filters-section d-flex align-items-end flex-wrap justify-content-start" id="filter-section">
+</div>
+<div id="missionList" class="container">
+</div>
+
+<script>
+    var searchTerm = "";
+    let sortValue = "";
+
+
+    $(document).ready(function () {
+
+    LoadMission();
+    });
+
+
+    $("#search").on("keyup", function (e) {
+    searchTerm = $("#search").val().toLowerCase();
+    LoadMission();
+    })
+
+
+
+    function LoadMission(sortValue) {
+    var country = [];
+
+    $("#countryList").find("input:checked").each(function (i, obj) {
+
+    country.push($(obj).val());
+
+    })
+    var city = [];
+    $("#cityList").find("input:checked").each(function (i, obj) {
+
+    city.push($(obj).val());
+
+    })
+    var theme = [];
+    $("#themeList").find("input:checked").each(function (i, obj) {
+
+    theme.push($(obj).val());
+
+    })
+
+
+
+    $.ajax({
+    url: '/MissionLandingPage/LandingDummy',
+    method: "POST",
+    dataType: "json",
+    data: { "searchTerm": searchTerm, "sortValue": sortValue, "country": country, "city": city, "theme": theme },
+    success: function (data) {
+    alert("sfdfdsf");
+    $("#missionList").html("");
+    $("#missionList").html(data);
+    },
+    error: function (error) {
+    console.log(error);
+
+    }
+
+    })
+
+
+    }
+
+    // recomand to users
+
+    function recomand(Email, MI) {
+
+    //alert(MI);
+    $.ajax({
+    url: '/User/RecomandUser',
+    type: 'POST',
+    data: { EmailId: Email, MissionId: MI },
+    success: function (result) {
+
+    alert("send");
+
+    }
+    });
+    }
+</script>
